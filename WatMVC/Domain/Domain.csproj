@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4FC13B42-AA44-497A-A2B5-43802B0B1836}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IDataBase.cs" />
+    <Compile Include="Interfaces\IBasketItem.cs" />
+    <Compile Include="Interfaces\IBasket.cs" />
+    <Compile Include="Interfaces\ICookieManager.cs" />
+    <Compile Include="Interfaces\IUrlManager.cs" />
+    <Compile Include="Interfaces\IXMLReader.cs" />
+    <Compile Include="Repositories\Basket.cs" />
+    <Compile Include="Repositories\DataBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\dev_basket_mng.cs" />
+    <Compile Include="Repositories\dev_const.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repositories\dev_enums.cs" />
+    <Compile Include="Repositories\dev_google.cs" />
+    <Compile Include="Repositories\dev_group_mng.cs" />
+    <Compile Include="Repositories\dev_order_mng.cs" />
+    <Compile Include="Repositories\dev_path_mng.cs" />
+    <Compile Include="Repositories\dev_security.cs" />
+    <Compile Include="Repositories\dev_stat_mng.cs" />
+    <Compile Include="Repositories\dev_xml_mechs.cs" />
+    <Compile Include="Repositories\dev_xml_sames.cs" />
+    <Compile Include="Repositories\dev_xml_size.cs" />
+    <Compile Include="Repositories\dev_xml_subgoods.cs" />
+    <Compile Include="Repositories\GoodsFiller.cs" />
+    <Compile Include="Repositories\dev_page_metadata_mng.cs" />
+    <Compile Include="Repositories\UrlManager.cs" />
+    <Compile Include="Repositories\XMLReader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
+      <Project>{27cf80db-cdb2-4d57-ad92-3579a323f20f}</Project>
+      <Name>Domain.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
