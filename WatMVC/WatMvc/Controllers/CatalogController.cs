@@ -10,10 +10,10 @@ namespace WatMvc.Views
     {
         //
         // GET: /Catalog/e-333-5f/
-        [Route("catalog/{article}")]
-        public ActionResult Index(string article)
+        [Route("catalog/{articul}")]
+        public ActionResult Index(string articul)
         {
-            ViewBag.Message = string.Format("Your article is : {0}", article);
+            ViewBag.Message = string.Format("Your article is : {0}", articul);
             return View();
         }
 
