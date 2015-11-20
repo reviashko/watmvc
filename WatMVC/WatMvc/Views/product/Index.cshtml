@@ -1,6 +1,81 @@
-﻿@{
-    ViewBag.Title = "test";
-}
+﻿@model WatMvc.Models.ProductViewModels
+@Model.Product.Articul
 
+<h1>@Model.Product.Articul @Model.Product.Name</h1>
 
-@ViewBag.Message
+<div style="padding-top:15px;">
+    <div id="Img">
+        <div><img src="http://img.watshop.ru/small/@(Model.Product.HasImg ? Model.Product.Link_id : 0).jpg" alt="@Model.Product.Name" /></div>
+        <noindex>
+            <a id="sound">&nbsp;</a>
+            <dev:Sounds runat="server" ID="Snd" Visible="false" />
+            <div>
+                <script type="text/javascript">
+                    new Ya.share({'element': 'ya_share1','elementStyle': {'type': 'link','linkIcon': true,'border': false,'quickServices': ['yaru', 'vkontakte', 'facebook', 'twitter', 'odnoklassniki', 'friendfeed', 'moimir', 'lj']}, 'popupStyle': {'copyPasteField': true} });
+                </script>
+                <span id="ya_share1"></span>
+
+                <asp:placeholder runat="server" visible='@(Model.Product.Pdf > 0 ? true : false)'>
+                    <div style="text-align:left;padding:15px;"><a href="http://img.watshop.ru/pdf/<%# xnGoods.Articul %>.pdf" target="_blank" title="Дополнительное описание <%# xnGoods.Articul %>"><img src="/img/pdf.jpg" alt="Дополнительное описание <%# xnGoods.Articul %>" /></a></div>
+                </asp:placeholder>
+
+            </div>
+        </noindex>
+    </div>
+    <div id="Data">
+        <strong>Дополнительная информация о "@Model.Product.Name":</strong>
+
+        <table>
+            <tr><td width="110">Производитель</td><td>: @Model.Product.Brand_name</td></tr>
+            <tr><td>Серия</td><td>: @Model.Product.Seria_name</td></tr>
+            <tr><td>Артикул</td><td>: @Model.Product.Articul</td></tr>
+            <tr><td>Вес</td><td>: @Model.Product.Weight кг.</td></tr>
+            <tr><td>Производство</td><td>: @Model.Product.Country_name</td></tr>
+            @if(Model.Product.Color_name != "")
+            {
+                <tr><td>Цвет</td><td>: @Model.Product.Color_name</td></tr>
+            }
+            @if(Model.Product.Consists_name != "")
+            {
+                <tr><td>Состав</td><td>: @Model.Product.Consists_name</td></tr>
+            }
+            <tr><td>Тип</td><td>: @Model.Product.Gtype_name</td></tr>
+            <tr><td>ФК</td><td>: @Model.Product.Link_id</td></tr>
+            <tr>
+                <td>Стоимость</td>
+                <td>
+                    :
+                    <span id="Price">
+                        <%# xnGoods.Price %>
+                        <asp:placeholder runat="server" visible="@(Model.Product.Sale > 0)"><span>@Model.Product.OldPrice</span></asp:placeholder>
+                    </span>  руб.
+                </td>
+            </tr>
+        </table>
+
+        <noindex>
+            <div style="padding-left:3px;">
+                <div id="AddBtn">
+                    <div id="AddedMsg">Товар добавлен в корзину</div>
+                    <input type="button" id="AddToBasketBtn" rel="<%# xnGoods.Link_id %>" ref="0" value="" />
+                    <div class="BtnWrap2" style="display:none;"><input type="button" onclick="javascript:window.location='/basket.aspx'" class="Button" value="Перейти в корзину >>" /></div>
+
+                    <asp:PlaceHolder runat="server" ID="AddInfo" Visible="false">
+                        <span style="color:green;">Товар добавлен в корзину!</span>
+                    </asp:PlaceHolder>
+                </div>
+                <div style="padding-top:5px;">
+                    <input type="text" maxlength="5" id="quantity" value="1" /><span id="CntDescr"> шт.</span>
+                </div>
+                <div class="cl"></div>
+                <div id="Phone">
+                    <div>или заказать по телефону:</div><span class="phone"><span class="code"><%= string.Format(dev_const.TechnicalSupportPhoneTemplate, "</span><span class='number'>") %></span></span>
+                </div>
+            </div>
+        </noindex>
+    </div>
+    <div class="cl"></div>
+
+    <!--<dev:Recommend runat="Server" ID="Rec" />-->
+    <div class="gdInfo">@Model.Product.Descr %></div>
+</div>

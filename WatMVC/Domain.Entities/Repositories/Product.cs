@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class dev_xgoods
+    public class Product
     {
         public int Link_id { get; set; }
 
@@ -69,7 +69,7 @@ namespace Domain.Entities
 
         public DataTable Recommendation { get; set; }
 
-        public dev_xgoods()
+        public Product()
         {
             Weight = 0;
             Sale = 0;
@@ -101,7 +101,7 @@ namespace Domain.Entities
         }
 
 
-        public dev_xgoods(int link_id, DataTable src)
+        public Product(int link_id, DataTable src)
         {
             Link_id = link_id;
             Weight = decimal.Parse(src.Rows[0]["weight"].ToString());

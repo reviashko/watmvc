@@ -45,7 +45,7 @@
     <Compile Include="Repositories\dev_order.cs" />
     <Compile Include="Repositories\dev_users.cs" />
     <Compile Include="Repositories\dev_xml_goods.cs" />
-    <Compile Include="Repositories\dev_xgoods.cs" />
+    <Compile Include="Repositories\Product.cs" />
     <Compile Include="Repositories\dev_xml_mechs.cs" />
     <Compile Include="Repositories\dev_xml_sames.cs" />
     <Compile Include="Repositories\dev_xml_size.cs" />

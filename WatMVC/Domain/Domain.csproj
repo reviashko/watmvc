@@ -66,6 +66,7 @@
     <Compile Include="Repositories\dev_xml_subgoods.cs" />
     <Compile Include="Repositories\GoodsFiller.cs" />
     <Compile Include="Repositories\dev_page_metadata_mng.cs" />
+    <Compile Include="Repositories\ProductService.cs" />
     <Compile Include="Repositories\UrlManager.cs" />
     <Compile Include="Repositories\XMLReader.cs" />
   </ItemGroup>
