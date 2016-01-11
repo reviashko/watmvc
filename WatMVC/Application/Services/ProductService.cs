@@ -15,7 +15,7 @@ namespace Application
 
         public Product GetGoodsByID(int link_id)
         {
-            ProductRepository pr = new ProductRepository();
+            var pr = new ProductRepository();
             // кеш тута
             return pr.GetGoodsByID(link_id);
         }

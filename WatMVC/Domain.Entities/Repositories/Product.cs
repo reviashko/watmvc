@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Xml;
 using System.Text;
 
@@ -27,7 +26,7 @@ namespace Domain.Entities
 
         public string Descr_SeoSrc { get; set; }
 
-        public int Sound { get; set; }
+        public byte Sound { get; set; }
 
         public string UT_video { get; set; }
 
@@ -38,6 +37,12 @@ namespace Domain.Entities
         public string Consists_name { get; set; }
 
         public string Country_name { get; set; }
+
+        public int Logos_id { get; set; }
+
+        public string Logos_name { get; set; }
+
+        public int Gtype_id { get; set; }
 
         public string Gtype_name { get; set; }
 
@@ -101,36 +106,36 @@ namespace Domain.Entities
         }
 
 
-        public Product(int link_id, DataTable src)
-        {
-            Link_id = link_id;
-            Weight = decimal.Parse(src.Rows[0]["weight"].ToString());
-            Sale = byte.Parse(src.Rows[0]["sale"].ToString());
-            Brand_name = src.Rows[0]["brand_name"].ToString();
-            Name = src.Rows[0]["name"].ToString();
-            Descr = src.Rows[0]["descr"].ToString();
-            Descr_SeoSrc = src.Rows[0]["descr_seo"].ToString();
-            Descr_Seo = Descr_SeoSrc;
-            Sound = int.Parse(src.Rows[0]["sound"].ToString());
-            UT_video = src.Rows[0]["ut_video"].ToString();
-            Consists_name = src.Rows[0]["consists_name"].ToString();
-            Country_name = src.Rows[0]["country_name"].ToString();
-            Gtype_name = src.Rows[0]["gtype_name"].ToString();
-            Seria_name = src.Rows[0]["seria_name"].ToString();
-            HasImg = src.Rows[0]["s_img"].ToString().ToUpper().Equals("TRUE");
-            Color_name = src.Rows[0]["color_name"].ToString();
-            Color_web = src.Rows[0]["color_web"].ToString();
-            Articul = src.Rows[0]["articul"].ToString();
-            Price = int.Parse(src.Rows[0]["price"].ToString());
-            OldPrice = int.Parse(src.Rows[0]["price"].ToString());
-            Group_id = int.Parse(src.Rows[0]["group_id"].ToString());
-            HasExInfo = src.Rows[0]["hasExInfo"].ToString().ToUpper().Equals("TRUE");
-            Info = src.Rows[0]["info"].ToString();
-            RootGroup_id = int.Parse(src.Rows[0]["root_group_id"].ToString());
-            Brand_url = src.Rows[0]["brand_url"].ToString();
-            Seria_url = src.Rows[0]["seria_url"].ToString();
-            Pdf = byte.Parse(src.Rows[0]["pdf"].ToString());
-            Url = src.Rows[0]["url"].ToString();
-        }
+        //public Product(int link_id, DataTable src)
+        //{
+        //    Link_id = link_id;
+        //    Weight = decimal.Parse(src.Rows[0]["weight"].ToString());
+        //    Sale = byte.Parse(src.Rows[0]["sale"].ToString());
+        //    Brand_name = src.Rows[0]["brand_name"].ToString();
+        //    Name = src.Rows[0]["name"].ToString();
+        //    Descr = src.Rows[0]["descr"].ToString();
+        //    Descr_SeoSrc = src.Rows[0]["descr_seo"].ToString();
+        //    Descr_Seo = Descr_SeoSrc;
+        //    Sound = int.Parse(src.Rows[0]["sound"].ToString());
+        //    UT_video = src.Rows[0]["ut_video"].ToString();
+        //    Consists_name = src.Rows[0]["consists_name"].ToString();
+        //    Country_name = src.Rows[0]["country_name"].ToString();
+        //    Gtype_name = src.Rows[0]["gtype_name"].ToString();
+        //    Seria_name = src.Rows[0]["seria_name"].ToString();
+        //    HasImg = src.Rows[0]["s_img"].ToString().ToUpper().Equals("TRUE");
+        //    Color_name = src.Rows[0]["color_name"].ToString();
+        //    Color_web = src.Rows[0]["color_web"].ToString();
+        //    Articul = src.Rows[0]["articul"].ToString();
+        //    Price = int.Parse(src.Rows[0]["price"].ToString());
+        //    OldPrice = int.Parse(src.Rows[0]["price"].ToString());
+        //    Group_id = int.Parse(src.Rows[0]["group_id"].ToString());
+        //    HasExInfo = src.Rows[0]["hasExInfo"].ToString().ToUpper().Equals("TRUE");
+        //    Info = src.Rows[0]["info"].ToString();
+        //    RootGroup_id = int.Parse(src.Rows[0]["root_group_id"].ToString());
+        //    Brand_url = src.Rows[0]["brand_url"].ToString();
+        //    Seria_url = src.Rows[0]["seria_url"].ToString();
+        //    Pdf = byte.Parse(src.Rows[0]["pdf"].ToString());
+        //    Url = src.Rows[0]["url"].ToString();
+        //}
     }
 }

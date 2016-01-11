@@ -22,5 +22,6 @@ namespace Domain
         DataSet GetDataSet();
         T GetReturnValue<T>();
         string GetScalarValue();
+        List<T> Query<T>();
     }
 }

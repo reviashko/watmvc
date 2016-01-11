@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Xml;
 using System.Text;
+using Dapper;
+using System.Linq;
 
 namespace Domain
 {
@@ -56,6 +58,8 @@ namespace Domain
         public abstract DataSet GetDataSet();
 
         public abstract T GetReturnValue<T>();
+
+        public abstract List<T> Query<T>();
     }
 
     public class MSSql : ADataBase
@@ -132,6 +136,30 @@ namespace Domain
             }
 
             return (T)Convert.ChangeType(returnValueParameter.Value, typeof(T));
+        }
+
+        override public List<T> Query<T>()
+        {
+            object paramObject = 0;
+            SqlParameter returnValueParameter = new SqlParameter("returnValue", paramObject);
+            returnValueParameter.Direction = ParameterDirection.ReturnValue;
+
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                var parameters = new DynamicParameters();
+                //queryParameters.ForEach(p => parameters.Add(p.ParameterName, p.Value, p.DbType, p.Direction, p.Size));
+
+                foreach (SqlParameter param in queryParameters)
+                {
+                    parameters.Add(param.ParameterName, param.Value, param.DbType, param.Direction, param.Size);
+                }
+
+                con.Open();
+                var result = con.Query<T>(this.storedProcedure, parameters,
+                        commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
         }
     }
 }

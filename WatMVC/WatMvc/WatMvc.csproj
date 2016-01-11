@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -164,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CatalogViewModels.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -221,8 +225,11 @@
     <Content Include="Views\account\Manage.cshtml" />
     <Content Include="Views\account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\catalog\Index.cshtml" />
+    <Content Include="Views\catalog\Subject.cshtml" />
     <Content Include="Views\product\Index.cshtml" />
+    <Content Include="Views\catalog\BrandSubject.cshtml" />
+    <Content Include="Views\catalog\Brand.cshtml" />
+    <Content Include="Views\Shared\CatalogView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

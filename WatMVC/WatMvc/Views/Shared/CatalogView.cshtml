@@ -1,0 +1,62 @@
+﻿@model WatMvc.Models.CatalogViewModels
+
+<div>
+    @{
+        int item_index = 0;
+        foreach (var product in Model.CatalogGoods)
+        {
+            <div class="GHExItem">
+	            <div class="mlink">
+                
+                    <a href="/@product.Url/" title="обзор @product.Name">@product.Name</a>
+	            </div>
+  
+	            <div style="width:404px;">
+		            <div class="imgHolder">
+                        <a class="imglink" href="/@product.Url/" title="обзор @product.Name">
+                        @if(item_index++ > 2)
+                        {
+                            <img src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/@(product.HasImg ? product.Link_id : 0).jpg" alt="@product.Name" />
+                        }else{
+                            <img src="http://img.watshop.ru/small/@(product.HasImg ? product.Link_id : 0).jpg" alt="@product.Name" />
+                        }
+                        </a>
+                        @if (@product.Logos_id > 0)
+                        {
+                            <div class="catlogos" title="@product.Logos_name"><img src="/img/dacha.png" alt="@product.Name"/></div>
+                        }
+			            <div><a href="/@product.Url/" title="подробнее">подробнее...</a></div>
+		            </div>
+
+		            <div class="gheinfo">          
+			            <dev:Sounds runat="server" ID="Snd" Visible="false" />
+			            <table>
+                            @if (@product.Sound > 0)
+                            {
+                                <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/@product.Url/#sound">@product.Sound</a></td></tr>
+                            }
+                            @if (@product.UT_video.Length > 0)
+                            {
+                                <tr><td>Видео обзор</td><td><a href="/@product.Url/#video"><div class="videoLbl"></div></a></td></tr>
+                            }
+			            <tr><td>Марка</td><td>: <b>@product.Brand_name</b></td></tr>
+			            <tr><td>Артикул</td><td>: <b>@product.Articul</b></td></tr>
+			            <tr><td>Цвет</td><td>: <b>@product.Color_name</b></td></tr>
+			            </table>
+          
+			            <div class="gheprice">@product.Price руб.</div>
+          
+			            <div class="ghebtn">
+				            <div style="float:left;"><input class="qnt" id="q@product.Price" type="text" style="width:25px;height:22px;" value="1"/>шт.</div>
+				            <div style="float:left;"><a onclick="return ShowOrderWnd('#ob_mwpopup', '@product.Link_id', @product.Price);" href="/@product.Url/" title="купить @product.Name">
+					            <SPAN></SPAN></a></div>
+				            <div class="cl"></div>
+			            </div>          
+		            </div>
+    
+		            <div class="cl"></div>
+	            </div>
+            </div>
+        }
+    }
+</div>
