@@ -32,7 +32,14 @@ namespace Application
             var pr = new CatalogRepository();
             // кеш тута
             return pr.GetGoodsByBrand(brand_name);
-        }        
+        }
+
+        public List<Product> GetGoodsByBrandSeria(string brand_name, string seria_name)
+        {
+            var pr = new CatalogRepository();
+            // кеш тута
+            return pr.GetGoodsByBrandSeria(brand_name, seria_name);
+        }      
 
     }
 }

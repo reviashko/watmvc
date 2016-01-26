@@ -163,7 +163,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,10 +225,11 @@
     <Content Include="Views\account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\catalog\Subject.cshtml" />
-    <Content Include="Views\product\Index.cshtml" />
     <Content Include="Views\catalog\BrandSubject.cshtml" />
     <Content Include="Views\catalog\Brand.cshtml" />
     <Content Include="Views\Shared\CatalogView.cshtml" />
+    <Content Include="Views\catalog\BrandSeria.cshtml" />
+    <Content Include="Views\catalog\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

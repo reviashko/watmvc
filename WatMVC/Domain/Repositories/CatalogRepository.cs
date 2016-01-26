@@ -37,5 +37,15 @@ namespace Domain
             return db.Query<Product>();
         }
 
+        public List<Product> GetGoodsByBrandSeria(string brand_name, string seria_name)
+        {
+            IDataBase db = new MSSql();
+            db.SetStoredProcedure("MVCWeb.GoodsFilter");
+            db.AddParameter(new SqlParameter("@brand_name", brand_name));
+            db.AddParameter(new SqlParameter("@seria_name", seria_name));
+            return db.Query<Product>();
+        }
+        
+
     }
 }
