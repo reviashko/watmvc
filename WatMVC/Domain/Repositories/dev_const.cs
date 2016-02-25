@@ -8,15 +8,6 @@ namespace Domain.Entities
 {
     public class dev_const
     {
-        private static string _currency = "руб";
-        public static string Currency
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["Currency"];
-            }
-        }
-
         public static string CatalogTemplate
         {
             get

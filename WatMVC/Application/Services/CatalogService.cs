@@ -12,33 +12,18 @@ namespace Application
 {
     public class CatalogService
     {
-
-        public List<Product> GetGoodsBySubject(string subject_name)
+        public List<Product> GetGoodsByBrandSeriaArticul(string subject_name, string brand_name, string seria_name, string articul)
         {
             var pr = new CatalogRepository();
             // кеш тута
-            return pr.GetGoodsBySubject(subject_name);
+            return pr.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
         }
 
-        public List<Product> GetGoodsByBrandSubject(string subject_name, string brand_name)
+        public List<Product> GetGoodsByBrandSeria(string subject_name, string brand_name, string seria_name)
         {
             var pr = new CatalogRepository();
             // кеш тута
-            return pr.GetGoodsByBrandSubject(subject_name, brand_name);
-        }
-
-        public List<Product> GetGoodsByBrand(string brand_name)
-        {
-            var pr = new CatalogRepository();
-            // кеш тута
-            return pr.GetGoodsByBrand(brand_name);
-        }
-
-        public List<Product> GetGoodsByBrandSeria(string brand_name, string seria_name)
-        {
-            var pr = new CatalogRepository();
-            // кеш тута
-            return pr.GetGoodsByBrandSeria(brand_name, seria_name);
+            return pr.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
         }      
 
     }

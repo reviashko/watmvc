@@ -6,40 +6,35 @@
 
 <h1>@Model.Product.Articul @Model.Product.Name</h1>
 
-<div style="padding-top:15px;">
-    <div id="Img">
-        <div><img src="http://img.watshop.ru/small/@(Model.Product.HasImg ? Model.Product.Link_id : 0).jpg" alt="@Model.Product.Name" /></div>
-        <noindex>
-            <a id="sound">&nbsp;</a>
-            <dev:Sounds runat="server" ID="Snd" Visible="false" />
-            <div>
-                <script type="text/javascript">
-                    new Ya.share({'element': 'ya_share1','elementStyle': {'type': 'link','linkIcon': true,'border': false,'quickServices': ['yaru', 'vkontakte', 'facebook', 'twitter', 'odnoklassniki', 'friendfeed', 'moimir', 'lj']}, 'popupStyle': {'copyPasteField': true} });
-                </script>
-                <span id="ya_share1"></span>
+<div>
+    <div class="fleft">
+        <img src="http://img.watshop.ru/small/@(Model.Product.HasImg ? Model.Product.Link_id.ToString() : "0").jpg" alt="@Model.Product.Name" />
 
-                @if(Model.Product.Pdf > 0)
-                {
-                    <div style="text-align:left;padding:15px;"><a href="http://img.watshop.ru/pdf/@(Model.Product.Articul).pdf" target="_blank" title="Дополнительное описание @Model.Product.Articul"><img src="/img/pdf.jpg" alt="Дополнительное описание @Model.Product.Articul" /></a></div>
-                }
+        @if (Model.Product.Pdf > 0)
+        {
+            <a href="http://img.watshop.ru/pdf/@(Model.Product.Articul).pdf" target="_blank" title="Дополнительное описание @Model.Product.Articul">
+                <img src="/img/pdf.jpg" alt="Дополнительное описание @Model.Product.Articul" />
+            </a>
+        }
 
-            </div>
-        </noindex>
+        @if (Model.Product.Sound > 0)
+        {
+            <div>test sound test</div>
+        }        
+        
     </div>
-    <div id="Data">
-        <strong>Дополнительная информация о "@Model.Product.Name":</strong>
-
+    <div class="fleft">
         <table>
             <tr><td width="110">Производитель</td><td>: @Model.Product.Brand_name</td></tr>
             <tr><td>Серия</td><td>: @Model.Product.Seria_name</td></tr>
             <tr><td>Артикул</td><td>: @Model.Product.Articul</td></tr>
             <tr><td>Вес</td><td>: @Model.Product.Weight кг.</td></tr>
             <tr><td>Производство</td><td>: @Model.Product.Country_name</td></tr>
-            @if(Model.Product.Color_name != "")
+            @if (!Model.Product.Color_name.Equals(""))
             {
                 <tr><td>Цвет</td><td>: @Model.Product.Color_name</td></tr>
             }
-            @if(Model.Product.Consists_name != "")
+            @if (!Model.Product.Consists_name.Equals(""))
             {
                 <tr><td>Состав</td><td>: @Model.Product.Consists_name</td></tr>
             }
@@ -51,54 +46,15 @@
                     :
                     <span id="Price">
                         @Model.Product.Price
-                            @if(Model.Product.OldPrice > Model.Product.Price)
-                            {
-                                <span>@Model.Product.OldPrice</span>
-                            }
+                        @if (Model.Product.OldPrice > Model.Product.Price)
+                        {
+                            <span>@Model.Product.OldPrice</span>
+                        }
                     </span>  руб.
                 </td>
             </tr>
         </table>
-
-        <noindex>
-            <div style="padding-left:3px;">
-                <div id="AddBtn">
-                    <div id="AddedMsg">Товар добавлен в корзину</div>
-                    <input type="button" id="AddToBasketBtn" rel="@Model.Product.Link_id" ref="0" value="" />
-                    <div class="BtnWrap2" style="display:none;"><input type="button" onclick="javascript:window.location='/basket.aspx'" class="Button" value="Перейти в корзину >>" /></div>
-
-                    <asp:PlaceHolder runat="server" ID="AddInfo" Visible="false">
-                        <span style="color:green;">Товар добавлен в корзину!</span>
-                    </asp:PlaceHolder>
-                </div>
-                <div style="padding-top:5px;">
-                    <input type="text" maxlength="5" id="quantity" value="1" /><span id="CntDescr"> шт.</span>
-                </div>
-                <div class="cl"></div>
-                <div id="Phone">
-                    <div>или заказать по телефону:8 800 000 0000</div>
-                </div>
-            </div>
-        </noindex>
     </div>
+    <div class="fleft">@Html.Raw(Model.Product.Descr) sldkjfashldkjfahsdlkjf skjdf skdjfh skdjf skdj fskdjf skdjfh skdjfh skdj f</div>
     <div class="cl"></div>
-
-    <!--<dev:Recommend runat="Server" ID="Rec" />-->
-    <div class="gdInfo">@Html.Raw(Model.Product.Descr)</div>
 </div>
-
-@section scripts{
-<script type="text/javascript">$(document).ready(
-    function()
-    {
-        $("input[id=AddToBasketBtn]").bind("click", 
-            function(event)
-            {
-                AddGoodsToBasket(@(Model.Product.Link_id), 0, $("[id=quantity]").val(), @(Model.Product.Price));
-                //alert("123")
-                return false;
-            }
-        );
-    }
-);</script>
-}

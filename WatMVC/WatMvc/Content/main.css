@@ -1,0 +1,40 @@
+BODY {
+    font-family:Arial, Tahoma;
+    font-size:12px;
+}
+DIV.GItm {
+    width:260px;
+    height:400px;
+    /*border:1px solid red;*/
+    padding-top:70px;
+    float:left;
+}
+
+DIV.GItm IMG.lazy{
+    display:block;
+    margin:0 auto;
+}
+
+DIV.GItm A.headlink{
+    display:block;
+    margin:0 auto;
+    width:90%;
+    height:40px;
+}
+
+DIV.GItm DIV.logos{
+    line-height: 0;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+
+/*--------------------------------*/
+
+DIV.cl{
+    clear:both;
+}
+
+DIV.fleft{
+    float:left;
+}

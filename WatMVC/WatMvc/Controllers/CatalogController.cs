@@ -10,14 +10,32 @@ namespace WatMvc.Views
 {
     public class CatalogController : Controller
     {
-        [Route("catalog/{brand_name}/{seria_name}/{articul}")]
-        public ActionResult BrandSeria(string brand_name, string seria_name, string articul)
+
+        [Route("catalog/{subject_name}/{brand_name}/{seria_name}/{articul}")]
+        public ActionResult SeriaProduct(string subject_name, string brand_name, string seria_name, string articul)
         {
             var cs = new CatalogService();
-            var catalogGoods = cs.GetGoodsByBrandSeria(brand_name, seria_name);
+            var catalogGoods = cs.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
 
-            return View("Product", new CatalogViewModels() { CatalogGoods = catalogGoods });
+            return View("Product", new ProductViewModels() { Product = catalogGoods[0] });
         }
+
+        [Route("catalog/{subject_name}/{brand_name}/{seria_name}")]
+        public ActionResult SeriaProducts(string subject_name, string brand_name, string seria_name)
+        {
+            var cs = new CatalogService();
+            var catalogGoods = cs.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
+
+            if (catalogGoods.Count < 1)
+            {
+                return HttpNotFound("уасся");
+            }
+
+            ViewBag.Title = "test title";
+
+            return View("Catalog", new CatalogViewModels() { CatalogGoods = catalogGoods });
+        }
+
 
 	}
 }

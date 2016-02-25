@@ -1,0 +1,17 @@
+﻿@model WatMvc.Models.CatalogViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("CatalogView", Model);
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("IMG.lazy").lazyload();
+            $(".GItm IMG").click(function () { window.location.href = $(this).attr("rel"); }).css("cursor", "pointer");
+            $(".GItm .logos[rel='1']").append("<img src='http://www.watshop.ru/img/dacha.png'/>");
+        });
+    </script>
+}
