@@ -72,8 +72,6 @@ namespace Domain.Entities
 
         public byte Pdf { get; set; }
 
-        public DataTable Recommendation { get; set; }
-
         public Product()
         {
             Weight = 0;

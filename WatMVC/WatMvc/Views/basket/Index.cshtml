@@ -2,4 +2,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-its basket time
+@model WatMvc.Models.BasketViewModels
+
+<ul>
+    @foreach (var item in Model.BasketItems)
+    {
+        <div>@item.Articul</div>
+        <div>@item.Brand_name</div>
+    }
+</ul>

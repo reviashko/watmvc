@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IBasketRepository.cs" />
+    <Compile Include="Interfaces\ICatalogRepository.cs" />
     <Compile Include="Interfaces\IDataBase.cs" />
-    <Compile Include="Interfaces\IBasketItem.cs" />
-    <Compile Include="Interfaces\IBasket.cs" />
     <Compile Include="Interfaces\ICookieManager.cs" />
     <Compile Include="Interfaces\IXMLReader.cs" />
-    <Compile Include="Repositories\Basket.cs" />
+    <Compile Include="Interfaces\IMenuRepository.cs" />
     <Compile Include="Repositories\Dapper.cs" />
     <Compile Include="Repositories\DataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

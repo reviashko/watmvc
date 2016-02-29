@@ -10,20 +10,25 @@ using Domain.Entities;
 
 namespace Application
 {
-    public class CatalogService
+    public class CatalogService : ICatalogService
     {
+        ICatalogRepository _catalogRepository;
+
+        public CatalogService(ICatalogRepository catalogRepository)
+        {
+            _catalogRepository = catalogRepository;
+        }
+
         public List<Product> GetGoodsByBrandSeriaArticul(string subject_name, string brand_name, string seria_name, string articul)
         {
-            var pr = new CatalogRepository();
             // кеш тута
-            return pr.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
+            return _catalogRepository.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
         }
 
         public List<Product> GetGoodsByBrandSeria(string subject_name, string brand_name, string seria_name)
         {
-            var pr = new CatalogRepository();
             // кеш тута
-            return pr.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
+            return _catalogRepository.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
         }      
 
     }

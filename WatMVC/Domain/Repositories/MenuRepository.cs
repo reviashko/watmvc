@@ -9,13 +9,14 @@ using Domain.Entities;
 
 namespace Domain
 {
-    public class MenuRepository
+    public class MenuRepository : IMenuRepository
     {
         public List<MenuItem> GetMenuItems()
         {
             List<MenuItem> retval = new List<MenuItem>();
 
             retval.Add(new MenuItem { Item_name = "home", Item_url = "/" });
+            retval.Add(new MenuItem { Item_name = "basket", Item_url = "/basket" });
             retval.Add(new MenuItem { Item_name = "Zamel Sundi", Item_url = "/catalog/all/zamel/sundi/" });
             retval.Add(new MenuItem { Item_name = "Merten Antik", Item_url = "/catalog/all/merten/antik/" });
 

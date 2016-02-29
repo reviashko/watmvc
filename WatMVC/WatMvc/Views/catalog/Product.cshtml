@@ -13,8 +13,8 @@
                 $.ajax({
                     url: '/basket/Add',
                     type: 'POST',
-                    //data: { goods_id: $('#caption').val() },
-                    data: { goods_id: 1868 },
+                    //data: { goods_id: 1868, cnt:1 },
+                    data: { goods_id: $("INPUT").attr("rel"), cnt: 1 },
                     success: function (result) {
                         alert(result.name);
                     },

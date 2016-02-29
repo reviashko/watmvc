@@ -9,89 +9,25 @@ using Domain.Entities;
 
 namespace Domain
 {
-    public class BasketRepository
+    public class BasketRepository : IBasketRepository
     {
-        private IBasket bsk;
-
-        public int Quantity
+        public bool Add(int client_id, int goods_id, byte count)
         {
-            get { return bsk.Quantity; }
+            IDataBase db = new MSSql();
+            db.SetStoredProcedure("MVCWeb.Basket_Add");
+            db.AddParameter(new SqlParameter("@client_id", client_id));
+            db.AddParameter(new SqlParameter("@goods_id", goods_id));
+            db.AddParameter(new SqlParameter("@cnt", count));
+
+            return db.GetReturnValue<bool>();
         }
 
-        public decimal Sum
+        public List<Product> Get(int client_id)
         {
-            get { return bsk.Sum; }
-        }
-
-        public decimal Weight
-        {
-            get { return bsk.Weight; }
-        }
-
-        public BasketRepository(int user_id)
-        {
-            MSSql msdb = new MSSql();
-
-            if (user_id > 0)
-            {
-                bsk = new UserBasket(user_id, msdb);
-            }
-            else
-            {
-                //bsk = new SessionBasket(msdb, new dev_cookie_mng(), dev_const.SiteUrl, 30);
-                
-            }
-        }
-
-        public void FillTotals()
-        {
-            bsk.FillTotals();
-        }
-
-        public int UpdItems(List<IBasketItem> items)
-        {
-            return bsk.Update(items);
-        }
-
-        public int AddItems(List<IBasketItem> items)
-        {
-            return bsk.Add(items);
-        }
-
-        public int DelItems(List<IBasketItem> items)
-        {
-            return bsk.Delete(items);
-        }
-
-        public decimal GetRowTotal(int price_id)
-        {
-            if (price_id > 0)
-            {
-                foreach (IBasketItem it in bsk.Get())
-                {
-                    if (it.Price_id.Equals(price_id))
-                    {
-                        return it.Quantity * it.Cost;
-                    }
-                }
-            }
-
-            return 0;
-        }
-
-        public List<IBasketItem> GetBasket()
-        {
-            return bsk.Get();
-        }
-
-        public DataTable GetBasketSrc()
-        {
-            return bsk.bskSrc;
-        }
-
-        public void ClearBasket()
-        {
-            bsk.Clear();
+            IDataBase db = new MSSql();
+            db.SetStoredProcedure("MVCWeb.Basket_Get");
+            db.AddParameter(new SqlParameter("@client_id", client_id));
+            return db.Query<Product>();
         }
     }
 }

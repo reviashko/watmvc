@@ -29,15 +29,6 @@ namespace WatMvc.Controllers
             return View();
         }
 
-        [ChildActionOnly]
-        public PartialViewResult MainMenu()
-        {
-            var ms = new MenuService();
-            var menuItems = ms.GetMenuItems();
-
-            return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
-        }
-
         public ActionResult TestDetails()
         {
             return PartialView("TestPartial");

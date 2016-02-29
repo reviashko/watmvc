@@ -39,14 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IBasketService.cs" />
+    <Compile Include="Interfaces\ICatalogService.cs" />
+    <Compile Include="Interfaces\IMenuService.cs" />
+    <Compile Include="Services\BasketService.cs" />
     <Compile Include="Services\CatalogService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">
       <Project>{27cf80db-cdb2-4d57-ad92-3579a323f20f}</Project>

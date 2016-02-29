@@ -16,6 +16,14 @@ namespace WatMvc.Views
 
     public class CatalogController : Controller
     {
+        ICatalogService _catalogService;
+        IMenuService _menuService;
+
+        public CatalogController(ICatalogService catalogService, IMenuService menuService)
+        {
+            _catalogService = catalogService;
+            _menuService = menuService;
+        }
 
         public ActionResult JSONTest()
         {
@@ -28,11 +36,17 @@ namespace WatMvc.Views
             return Json(new { employee = vasya }, JsonRequestBehavior.AllowGet);
         }
 
+        [ChildActionOnly]
+        public PartialViewResult MainMenu()
+        {
+            var menuItems = _menuService.GetMenuItems();
+            return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
+        }
+
         [Route("catalog/{subject_name}/{brand_name}/{seria_name}/{articul}")]
         public ActionResult SeriaProduct(string subject_name, string brand_name, string seria_name, string articul)
         {
-            var cs = new CatalogService();
-            var catalogGoods = cs.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
+            var catalogGoods = _catalogService.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
 
             return View("Product", new ProductViewModels() { Product = catalogGoods[0] });
         }
@@ -40,8 +54,7 @@ namespace WatMvc.Views
         [Route("catalog/{subject_name}/{brand_name}/{seria_name}")]
         public ActionResult SeriaProducts(string subject_name, string brand_name, string seria_name)
         {
-            var cs = new CatalogService();
-            var catalogGoods = cs.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
+            var catalogGoods = _catalogService.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
 
             if (catalogGoods.Count < 1)
             {

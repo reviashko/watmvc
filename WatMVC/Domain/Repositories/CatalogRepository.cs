@@ -9,7 +9,7 @@ using Domain.Entities;
 
 namespace Domain
 {
-    public class CatalogRepository
+    public class CatalogRepository : ICatalogRepository
     {
         public List<Product> GetGoodsByBrandSeriaArticul(string subject_name, string brand_name, string seria_name, string articul)
         {

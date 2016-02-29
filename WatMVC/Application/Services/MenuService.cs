@@ -10,14 +10,19 @@ using Domain.Entities;
 
 namespace Application
 {
-    public class MenuService
+    public class MenuService : IMenuService
     {
+        IMenuRepository _menuRepository;
+
+        public MenuService(IMenuRepository menuRepository)
+        {
+            _menuRepository = menuRepository;
+        }
 
         public List<MenuItem> GetMenuItems()
         {
-            var pr = new MenuRepository();
             // кеш тута
-            return pr.GetMenuItems();
+            return _menuRepository.GetMenuItems();
         }
 
     }
