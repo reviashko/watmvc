@@ -44,32 +44,16 @@
     <Compile Include="Interfaces\IBasketItem.cs" />
     <Compile Include="Interfaces\IBasket.cs" />
     <Compile Include="Interfaces\ICookieManager.cs" />
-    <Compile Include="Interfaces\IUrlManager.cs" />
     <Compile Include="Interfaces\IXMLReader.cs" />
     <Compile Include="Repositories\Basket.cs" />
     <Compile Include="Repositories\Dapper.cs" />
     <Compile Include="Repositories\DataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\dev_basket_mng.cs" />
-    <Compile Include="Repositories\dev_const.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Repositories\dev_enums.cs" />
-    <Compile Include="Repositories\dev_google.cs" />
-    <Compile Include="Repositories\dev_group_mng.cs" />
-    <Compile Include="Repositories\dev_order_mng.cs" />
-    <Compile Include="Repositories\dev_path_mng.cs" />
+    <Compile Include="Repositories\BasketRepository.cs" />
     <Compile Include="Repositories\dev_security.cs" />
-    <Compile Include="Repositories\dev_stat_mng.cs" />
-    <Compile Include="Repositories\dev_xml_mechs.cs" />
-    <Compile Include="Repositories\dev_xml_sames.cs" />
-    <Compile Include="Repositories\dev_xml_size.cs" />
-    <Compile Include="Repositories\dev_xml_subgoods.cs" />
-    <Compile Include="Repositories\GoodsFiller.cs" />
-    <Compile Include="Repositories\dev_page_metadata_mng.cs" />
     <Compile Include="Repositories\CatalogRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\UrlManager.cs" />
     <Compile Include="Repositories\XMLReader.cs" />
   </ItemGroup>
   <ItemGroup>

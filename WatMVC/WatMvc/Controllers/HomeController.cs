@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Application;
+using WatMvc.Models;
 
 namespace WatMvc.Controllers
 {
@@ -25,6 +27,20 @@ namespace WatMvc.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult MainMenu()
+        {
+            var ms = new MenuService();
+            var menuItems = ms.GetMenuItems();
+
+            return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
+        }
+
+        public ActionResult TestDetails()
+        {
+            return PartialView("TestPartial");
         }
     }
 }

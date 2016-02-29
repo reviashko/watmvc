@@ -8,8 +8,25 @@ using WatMvc.Models;
 
 namespace WatMvc.Views
 {
+
+    public class Employee
+    {
+        public string Employee_name { get; set; }
+    }
+
     public class CatalogController : Controller
     {
+
+        public ActionResult JSONTest()
+        {
+
+            Employee vasya = new Employee
+            {
+                Employee_name = "Vasya"
+            };
+
+            return Json(new { employee = vasya }, JsonRequestBehavior.AllowGet);
+        }
 
         [Route("catalog/{subject_name}/{brand_name}/{seria_name}/{articul}")]
         public ActionResult SeriaProduct(string subject_name, string brand_name, string seria_name, string articul)
@@ -36,6 +53,5 @@ namespace WatMvc.Views
             return View("Catalog", new CatalogViewModels() { CatalogGoods = catalogGoods });
         }
 
-
-	}
+    }
 }

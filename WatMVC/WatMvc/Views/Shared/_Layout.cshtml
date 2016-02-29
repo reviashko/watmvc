@@ -14,12 +14,7 @@
 <body>
     <div class="container body-content">
         <div class="menu">
-            <ul>
-                <li><a href="/">home</a></li>
-                <li><a href="/catalog/subject/brand">subject brand</a></li>
-                <li><a href="/catalog/subject">subject</a></li>
-                <li><a href="/brand/merten">Merten</a></li>
-            </ul>
+            @{ Html.RenderAction("MainMenu", "home"); }
         </div>
         @RenderBody()
         <p>&copy; @DateTime.Now.Year - Footer</p>

@@ -1,0 +1,29 @@
+﻿@model WatMvc.Models.CatalogViewModels
+
+<div>
+    @foreach (var product in Model.CatalogGoods)
+    {
+        <div class="GItm">
+            <div class="logos" rel="@product.Logos_id"></div>
+            <a class="headlink" href="@product.Articul" title="обзор @product.Name">@product.Name</a>
+            <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/@(product.HasImg ? product.Link_id.ToString() : "0").jpg" />
+            
+            <table>
+                @if (@product.Sound > 0)
+                {
+                    <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/@product.Url/#sound">@product.Sound</a></td></tr>
+                }
+                @if (@product.UT_video.Length > 0)
+                {
+                    <tr><td>Видео обзор</td><td><a href="/@product.Url/#video"><div class="videoLbl"></div></a></td></tr>
+                }
+                <tr><td>Марка</td><td>: <b>@product.Brand_name</b></td></tr>
+                <tr><td>Артикул</td><td>: <b>@product.Articul</b></td></tr>
+                <tr><td>Цвет</td><td>: <b>@product.Color_name</b></td></tr>
+                <tr><td>Цена</td><td>: @product.Price руб.</td></tr>
+            </table>
+
+        </div>
+    }
+    <div class="cl"></div>
+</div>

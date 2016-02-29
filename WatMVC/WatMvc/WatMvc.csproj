@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -162,11 +163,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MainMenuViewModels.cs" />
     <Compile Include="Models\CatalogViewModels.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -223,14 +226,14 @@
     <Content Include="Views\account\Manage.cshtml" />
     <Content Include="Views\account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\catalog\Subject.cshtml" />
-    <Content Include="Views\catalog\BrandSubject.cshtml" />
-    <Content Include="Views\catalog\Brand.cshtml" />
-    <Content Include="Views\Shared\CatalogView.cshtml" />
-    <Content Include="Views\catalog\BrandSeria.cshtml" />
+    <Content Include="Views\Shared\CatalogPartial.cshtml" />
     <Content Include="Views\catalog\Product.cshtml" />
     <Content Include="Views\catalog\Catalog.cshtml" />
     <Content Include="Views\errors\PageNotFound.cshtml" />
+    <Content Include="Views\Shared\ProductPartial.cshtml" />
+    <Content Include="Views\Shared\TestPartial.cshtml" />
+    <Content Include="Views\Shared\MainMenuPartial.cshtml" />
+    <Content Include="Views\basket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

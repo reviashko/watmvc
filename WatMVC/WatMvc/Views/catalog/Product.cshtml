@@ -4,57 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@Model.Product.Articul @Model.Product.Name</h1>
+@Html.Partial("ProductPartial", Model);
 
-<div>
-    <div class="fleft">
-        <img src="http://img.watshop.ru/small/@(Model.Product.HasImg ? Model.Product.Link_id.ToString() : "0").jpg" alt="@Model.Product.Name" />
-
-        @if (Model.Product.Pdf > 0)
-        {
-            <a href="http://img.watshop.ru/pdf/@(Model.Product.Articul).pdf" target="_blank" title="Дополнительное описание @Model.Product.Articul">
-                <img src="/img/pdf.jpg" alt="Дополнительное описание @Model.Product.Articul" />
-            </a>
-        }
-
-        @if (Model.Product.Sound > 0)
-        {
-            <div>test sound test</div>
-        }        
-        
-    </div>
-    <div class="fleft">
-        <table>
-            <tr><td width="110">Производитель</td><td>: @Model.Product.Brand_name</td></tr>
-            <tr><td>Серия</td><td>: @Model.Product.Seria_name</td></tr>
-            <tr><td>Артикул</td><td>: @Model.Product.Articul</td></tr>
-            <tr><td>Вес</td><td>: @Model.Product.Weight кг.</td></tr>
-            <tr><td>Производство</td><td>: @Model.Product.Country_name</td></tr>
-            @if (!Model.Product.Color_name.Equals(""))
-            {
-                <tr><td>Цвет</td><td>: @Model.Product.Color_name</td></tr>
-            }
-            @if (!Model.Product.Consists_name.Equals(""))
-            {
-                <tr><td>Состав</td><td>: @Model.Product.Consists_name</td></tr>
-            }
-            <tr><td>Тип</td><td>: @Model.Product.Gtype_name</td></tr>
-            <tr><td>ФК</td><td>: @Model.Product.Link_id</td></tr>
-            <tr>
-                <td>Стоимость</td>
-                <td>
-                    :
-                    <span id="Price">
-                        @Model.Product.Price
-                        @if (Model.Product.OldPrice > Model.Product.Price)
-                        {
-                            <span>@Model.Product.OldPrice</span>
-                        }
-                    </span>  руб.
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="fleft">@Html.Raw(Model.Product.Descr) sldkjfashldkjfahsdlkjf skjdf skdjfh skdjf skdj fskdjf skdjfh skdjfh skdj f</div>
-    <div class="cl"></div>
-</div>
+@section scripts{
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("INPUT").click(function () {
+                $.ajax({
+                    url: '/basket/Add',
+                    type: 'POST',
+                    //data: { goods_id: $('#caption').val() },
+                    data: { goods_id: 1868 },
+                    success: function (result) {
+                        alert(result.name);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+                return false;
+            });
+        });
+</script>
+}

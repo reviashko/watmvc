@@ -9,37 +9,26 @@ using Domain.Entities;
 
 namespace Domain
 {
-    public class dev_basket_mng
+    public class BasketRepository
     {
         private IBasket bsk;
 
-        public int TQuantity
+        public int Quantity
         {
             get { return bsk.Quantity; }
         }
 
-        public decimal TSum
+        public decimal Sum
         {
             get { return bsk.Sum; }
         }
 
-        public decimal TWeight
+        public decimal Weight
         {
             get { return bsk.Weight; }
         }
 
-        public decimal TNDS
-        {
-            get
-            {
-                if (this.TSum == 0 || dev_const.NDS == 0)
-                    return 0;
-
-                return (this.TSum * dev_const.NDS) / 100;
-            }
-        }
-
-        public dev_basket_mng(int user_id)
+        public BasketRepository(int user_id)
         {
             MSSql msdb = new MSSql();
 

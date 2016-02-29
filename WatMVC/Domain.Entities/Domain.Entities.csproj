@@ -41,17 +41,8 @@
   <ItemGroup>
     <Compile Include="Interfaces\IUrlItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\dev_basket_item.cs" />
-    <Compile Include="Repositories\dev_order.cs" />
-    <Compile Include="Repositories\dev_users.cs" />
-    <Compile Include="Repositories\dev_xml_goods.cs" />
+    <Compile Include="Repositories\MenuItem.cs" />
     <Compile Include="Repositories\Product.cs" />
-    <Compile Include="Repositories\dev_xml_mechs.cs" />
-    <Compile Include="Repositories\dev_xml_sames.cs" />
-    <Compile Include="Repositories\dev_xml_size.cs" />
-    <Compile Include="Repositories\dev_xml_subgoods.cs" />
-    <Compile Include="Repositories\dev_page_metadata.cs" />
-    <Compile Include="Repositories\UrlItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
