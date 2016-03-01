@@ -12,16 +12,21 @@
 
 </head>
 <body>
-    <div class="container body-content">
-        <div class="menu">
-            @{ Html.RenderAction("MainMenu", "home"); }
+
+    <div class="mcentr">@{ Html.RenderAction("MainMenu", "catalog"); }</div>
+    <div class="mcentr">
+        <div class="fleft lmenu">
+            @{ Html.RenderAction("LeftMenu", "catalog"); }
         </div>
-        @RenderBody()
-        <p>&copy; @DateTime.Now.Year - Footer</p>
+        <div class="fleft content">
+            @RenderBody()
+        </div>
+        <div class="cl"></div>
     </div>
 
     @Scripts.Render("~/bundles/tools")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jdata")
     @RenderSection("scripts", required: false)
 </body>
 </html>

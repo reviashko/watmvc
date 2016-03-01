@@ -12,7 +12,8 @@ namespace Application
 {
     public interface IMenuService
     {
-        List<MenuItem> GetMenuItems();
+        List<MenuItem> GetMainMenuItems();
+        List<MenuItem> GetLeftMenuItems();
 
     }
 }

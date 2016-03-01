@@ -11,7 +11,8 @@ namespace Domain
 {
     public interface IMenuRepository
     {
-        List<MenuItem> GetMenuItems();
+        List<MenuItem> GetMainMenuItems();
+        List<MenuItem> GetLeftMenuItems();
 
     }
 }

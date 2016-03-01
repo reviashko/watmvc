@@ -39,7 +39,14 @@ namespace WatMvc.Views
         [ChildActionOnly]
         public PartialViewResult MainMenu()
         {
-            var menuItems = _menuService.GetMenuItems();
+            var menuItems = _menuService.GetMainMenuItems();
+            return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult LeftMenu()
+        {
+            var menuItems = _menuService.GetLeftMenuItems();
             return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
         }
 

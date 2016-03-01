@@ -31,10 +31,25 @@ DIV.GItm DIV.logos{
 
 /*--------------------------------*/
 
-DIV.cl{
+.mcentr{
+    border:1px solid red;
+    width:1024px;
+    margin:0 auto;
+}
+
+.lmenu{
+    width:200px;
+}
+
+.content{
+    width:810px;
+    padding:5px;
+}
+
+.cl{
     clear:both;
 }
 
-DIV.fleft{
+.fleft{
     float:left;
 }

@@ -11,29 +11,6 @@
 
 @section scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("IMG.lazy").lazyload();
-            $("IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); }).css("cursor", "pointer");
-            $(".GItm .logos[rel='1']").append("<img src='http://www.watshop.ru/img/dacha.png'/>");
-
-
-            $("#tester1").load("/home/TestDetails", function (response, status, xhr) {
-                if (status != "success") {
-                    $("#tester1").html('an error has occured')
-                }
-            });
-
-            $.ajax({
-                type: 'GET',
-                url: '/catalog/JSONTest',
-                success: function (emp) {
-                    $('#tester2').text(emp.employee.Employee_name);
-                },
-                error: function (emp) {
-                    $('#tester2').text("an error ocured");
-                }
-            });
-
-        });
+        catalog.OnDocumentReady();
     </script>
 }

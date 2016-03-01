@@ -19,11 +19,16 @@ namespace Application
             _menuRepository = menuRepository;
         }
 
-        public List<MenuItem> GetMenuItems()
+        public List<MenuItem> GetMainMenuItems()
         {
             // кеш тута
-            return _menuRepository.GetMenuItems();
+            return _menuRepository.GetMainMenuItems();
         }
 
+        public List<MenuItem> GetLeftMenuItems()
+        {
+            // кеш тута
+            return _menuRepository.GetLeftMenuItems();
+        }
     }
 }
