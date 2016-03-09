@@ -28,6 +28,9 @@ DIV.GItm DIV.logos{
     right: 1px;
     top: 1px;
 }
+a{
+    text-decoration : dashed blue;
+}
 
 /*--------------------------------*/
 
@@ -39,6 +42,10 @@ DIV.GItm DIV.logos{
 
 .lmenu{
     width:200px;
+}
+
+.lmenu UL LI{
+    list-style-type: none;
 }
 
 .content{

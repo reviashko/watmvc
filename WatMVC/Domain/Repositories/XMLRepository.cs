@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Domain
 {
-    public class XMLReader : IXMLReader
+    public class XMLReader : IXMLRepository
     {
         public XmlDocument XmlDoc { get; set; }
 

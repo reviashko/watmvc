@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Application;
 using WatMvc.Models;
+using System.IO;
 
 namespace WatMvc.Views
 {
@@ -36,6 +37,12 @@ namespace WatMvc.Views
             return Json(new { employee = vasya }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetCatalodDataById(int menu_id)
+        {
+            var catalogGoods = _catalogService.GetGoodsByBrandSeria("all", "merten", "antik");
+            return Json(new { itms = catalogGoods }, JsonRequestBehavior.AllowGet);
+        }
+
         [ChildActionOnly]
         public PartialViewResult MainMenu()
         {
@@ -48,6 +55,23 @@ namespace WatMvc.Views
         {
             var menuItems = _menuService.GetLeftMenuItems();
             return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
+        }
+
+        protected string RenderPartialViewToString(string viewName, object model)
+        {
+            if (string.IsNullOrEmpty(viewName))
+                viewName = ControllerContext.RouteData.GetRequiredString("action");
+
+            ViewData.Model = model;
+
+            using (StringWriter sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
         }
 
         [Route("catalog/{subject_name}/{brand_name}/{seria_name}/{articul}")]

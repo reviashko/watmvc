@@ -44,7 +44,7 @@
     <Compile Include="Interfaces\ICatalogRepository.cs" />
     <Compile Include="Interfaces\IDataBase.cs" />
     <Compile Include="Interfaces\ICookieManager.cs" />
-    <Compile Include="Interfaces\IXMLReader.cs" />
+    <Compile Include="Interfaces\IXMLRepository.cs" />
     <Compile Include="Interfaces\IMenuRepository.cs" />
     <Compile Include="Repositories\Dapper.cs" />
     <Compile Include="Repositories\DataBase.cs" />
@@ -54,7 +54,7 @@
     <Compile Include="Repositories\CatalogRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\XMLReader.cs" />
+    <Compile Include="Repositories\XMLRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj">

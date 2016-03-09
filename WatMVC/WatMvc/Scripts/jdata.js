@@ -6,9 +6,29 @@
             JSONTest();
             Init();
         });
+
     }
 
-    //catalog.JSONTest = function () {
+    catalog.Open = function (menu_id) {
+       
+        $.ajax({
+            type: 'POST',
+            data: { menu_id: menu_id },
+            url: '/catalog/GetCatalodDataById',
+            success: function (res) {
+                //$("div.content").text(res.itms[0].Articul);
+                var template = $.templates("#catalogTemplate");
+                var htmlOutput = template.render(res.itms);
+                $("#catView").html(htmlOutput);
+                alert(1);
+            },
+            error: function (res) {
+                $("div.content").text("error on load");
+            }
+        });
+
+    }
+
     function JSONTest() {
         $.ajax({
             type: 'GET',
@@ -22,7 +42,6 @@
         });
     }
 
-    //catalog.LoadTest = function () {
     function LoadTest() {
         $("#tester1").load("/home/TestDetails", function (response, status, xhr) {
             if (status != "success") {
@@ -31,32 +50,11 @@
         });
     }
 
-    //catalog.Init = function () {
     function Init() {
         $("IMG.lazy").lazyload();
         $("IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); }).css("cursor", "pointer");
         $(".GItm .logos[rel='1']").append("<img src='http://www.watshop.ru/img/dacha.png'/>");
+        $(".lmenu A").click(function () { catalog.Open(1); return false; });
     }
 
-    //Private Property
-    //var isHot = true;
-
-    //Public Property
-    //catalog.ingredient = "Bacon Strips";
-
-    //Public Method
-    //catalog.fry = function () {
-    //    var oliveOil;
-
-    //    addItem("\t\n Butter \n\t");
-    //    addItem(oliveOil);
-    //    console.log("Frying " + skillet.ingredient);
-    //};
-
-    //Private Method
-    //function addItem(item) {
-    //    if (item !== undefined) {
-    //        console.log("Adding " + $.trim(item));
-    //    }
-    //}
 }(window.catalog = window.catalog || {}, jQuery));

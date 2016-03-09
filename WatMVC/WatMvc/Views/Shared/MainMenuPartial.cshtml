@@ -1,0 +1,8 @@
+﻿@model WatMvc.Models.MainMenuViewModels
+
+<ul>
+    @foreach (var item in Model.MenuItems)
+    {
+        <li><a href="@item.Item_url">@item.Item_name</a></li>
+    }
+</ul>
