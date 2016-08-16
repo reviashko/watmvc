@@ -1,58 +1,26 @@
 ﻿@model WatMvc.Models.CatalogViewModels
 
-<div id="catView">
-    @foreach (var product in Model.CatalogGoods)
-    {
-        <div class="GItm">
-            <div class="logos" rel="@product.Logos_id"></div>
-            <a class="headlink" href="@product.Articul" title="обзор @product.Name">@product.Name</a>
-            <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/@(product.HasImg ? product.Link_id.ToString() : "0").jpg" />
-            
-            <table>
-                @if (@product.Sound > 0)
-                {
-                    <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/@product.Url/#sound">@product.Sound</a></td></tr>
-                }
-                @if (@product.UT_video.Length > 0)
-                {
-                    <tr><td>Видео обзор</td><td><a href="/@product.Url/#video"><div class="videoLbl"></div></a></td></tr>
-                }
-                <tr><td>Марка</td><td>: <b>@product.Brand_name</b></td></tr>
-                <tr><td>Артикул</td><td>: <b>@product.Articul</b></td></tr>
-                <tr><td>Цвет</td><td>: <b>@product.Color_name</b></td></tr>
-                <tr><td>Цена</td><td>: @product.Price руб.</td></tr>
-            </table>
-
-        </div>
-    }
-</div>
-<div class="cl"></div>
-
-<script id="catalogTemplate" type="text/x-jsrender">
+@foreach (var product in Model.Products )
+{
     <div class="GItm">
-        <div class="logos" rel="{{:Logos_id}}"></div>
-        <a class="headlink" href="{{:Articul}}" title="обзор {{:Name}}">{{:Name}}</a>
-
-        {{ if HasImg  }}
-            <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/{{:Link_id}}.jpg" />
-        {{/if}}
-
-        {{ if !HasImg }}
-            <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/0.jpg" />
-        {{/if}}
-
+        <div class="logos" rel="@product.Logos_id"></div>
+        <a class="headlink" href="@product.Articul" title="обзор @product.Name">@product.Name</a>
+        <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/@(product.HasImg ? product.Link_id.ToString() : "0").jpg" />
+            
         <table>
-            {{ if Sound > 0 }}
-                <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/{{:Url}}/#sound">{{:Sound}}</a></td></tr>
-            {{/if}}
-            {{ if UT_video.Length > 0 }}
-                <tr><td>Видео обзор</td><td><a href="/{{:Url}}/#video"><div class="videoLbl"></div></a></td></tr>
-            {{/if}}
-            <tr><td>Марка</td><td>: <b>{{:Brand_name}}</b></td></tr>
-            <tr><td>Артикул</td><td>: <b>{{:Articul}}</b></td></tr>
-            <tr><td>Цвет</td><td>: <b>{{:Color_name}}</b></td></tr>
-            <tr><td>Цена</td><td>: {{:Price}} руб.</td></tr>
+            @if (@product.Sound > 0)
+            {
+                <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/@product.Url/#sound">@product.Sound</a></td></tr>
+            }
+            @if (@product.UT_video.Length > 0)
+            {
+                <tr><td>Видео обзор</td><td><a href="/@product.Url/#video"><div class="videoLbl"></div></a></td></tr>
+            }
+            <tr><td>Марка</td><td>: <b>@product.Brand_name</b></td></tr>
+            <tr><td>Артикул</td><td>: <b>@product.Articul</b></td></tr>
+            <tr><td>Цвет</td><td>: <b>@product.Color_name</b></td></tr>
+            <tr><td>Цена</td><td>: @product.Price руб.</td></tr>
         </table>
-    </div>
-</script>
 
+    </div>
+}

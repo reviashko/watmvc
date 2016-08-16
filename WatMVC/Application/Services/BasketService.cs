@@ -27,9 +27,13 @@ namespace Application
 
         public bool Add(int client_id, int goods_id, byte count)
         {
-            // кеш тута
             return _basketRepository.Add(client_id, goods_id, count);
-        }      
+        }
+
+        public bool Remove(int client_id, int basket_id)
+        {
+            return _basketRepository.Remove(client_id, basket_id);
+        }
 
     }
 }

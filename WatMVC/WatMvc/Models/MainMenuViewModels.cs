@@ -5,6 +5,6 @@ namespace WatMvc.Models
 {
     public class MainMenuViewModels
     {
-        public List<MenuItem> MenuItems { get; set; }
+        public List<MainMenuItem> MenuItems { get; set; }
     }
 }

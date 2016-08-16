@@ -4,17 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Application;
+using Domain.Entities;
 using WatMvc.Models;
 using System.IO;
 
 namespace WatMvc.Views
 {
-
-    public class Employee
-    {
-        public string Employee_name { get; set; }
-    }
-
     public class CatalogController : Controller
     {
         ICatalogService _catalogService;
@@ -26,21 +21,11 @@ namespace WatMvc.Views
             _menuService = menuService;
         }
 
-        public ActionResult JSONTest()
+        public JsonResult GetCatalogDataById(int menu_id)
         {
-
-            Employee vasya = new Employee
-            {
-                Employee_name = "Vasya"
-            };
-
-            return Json(new { employee = vasya }, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult GetCatalodDataById(int menu_id)
-        {
-            var catalogGoods = _catalogService.GetGoodsByBrandSeria("all", "merten", "antik");
-            return Json(new { itms = catalogGoods }, JsonRequestBehavior.AllowGet);
+            var menuItem = _menuService.GetCatalogMenuItemById(menu_id);
+            var catalogGoods = _catalogService.GetGoodsByBrandSeria(menuItem.Brand_id, menuItem.Seria_id);
+            return Json(new { itms = catalogGoods, mnus = menuItem }, JsonRequestBehavior.AllowGet);
         }
 
         [ChildActionOnly]
@@ -51,50 +36,43 @@ namespace WatMvc.Views
         }
 
         [ChildActionOnly]
-        public PartialViewResult LeftMenu()
+        public PartialViewResult CatalogMenu()
         {
-            var menuItems = _menuService.GetLeftMenuItems();
-            return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
+            var menuItems = _menuService.GetCatalogMenuItems();
+            return PartialView("CatalogMenuPartial", new CatalogMenuViewModels() { MenuItems = menuItems });
         }
 
-        protected string RenderPartialViewToString(string viewName, object model)
+        [Route("catalog/{brand_name}/{seria_name}/{articul}")]
+        public ActionResult SeriaProduct(string brand_name, string seria_name, string articul)
         {
-            if (string.IsNullOrEmpty(viewName))
-                viewName = ControllerContext.RouteData.GetRequiredString("action");
+            var menuItem = _menuService.GetCatalogMenuItemByAttr(brand_name, seria_name);
+            var catalogGoods = _catalogService.GetGoodsByBrandSeriaArticul(menuItem.Brand_id, menuItem.Seria_id, articul);
 
-            ViewData.Model = model;
-
-            using (StringWriter sw = new StringWriter())
+            if(catalogGoods.Count > 0)
             {
-                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
-                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
-                viewResult.View.Render(viewContext, sw);
-
-                return sw.GetStringBuilder().ToString();
+                return View("Product", new ProductViewModels() { Product = catalogGoods[0] });
             }
+            else
+            {
+                return HttpNotFound("Ресурс не найден");
+            }
+            
         }
 
-        [Route("catalog/{subject_name}/{brand_name}/{seria_name}/{articul}")]
-        public ActionResult SeriaProduct(string subject_name, string brand_name, string seria_name, string articul)
+        [Route("catalog/{brand_name}/{seria_name}")]
+        public ActionResult SeriaProducts(string brand_name, string seria_name)
         {
-            var catalogGoods = _catalogService.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
-
-            return View("Product", new ProductViewModels() { Product = catalogGoods[0] });
-        }
-
-        [Route("catalog/{subject_name}/{brand_name}/{seria_name}")]
-        public ActionResult SeriaProducts(string subject_name, string brand_name, string seria_name)
-        {
-            var catalogGoods = _catalogService.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
+            var menuItem = _menuService.GetCatalogMenuItemByAttr(brand_name, seria_name);
+            var catalogGoods = _catalogService.GetGoodsByBrandSeria(menuItem.Brand_id, menuItem.Seria_id);
 
             if (catalogGoods.Count < 1)
             {
-                return HttpNotFound("уасся");
+                return HttpNotFound("Ресурс не найден");
             }
 
-            ViewBag.Title = "test title";
+            ViewBag.Title = "Ресурс не найден";
 
-            return View("Catalog", new CatalogViewModels() { CatalogGoods = catalogGoods });
+            return View("Catalog", new CatalogViewModels() { Products = catalogGoods });
         }
 
     }

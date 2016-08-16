@@ -195,6 +195,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CatalogMenuViewModels.cs" />
     <Compile Include="Models\BasketViewModels.cs" />
     <Compile Include="Models\MainMenuViewModels.cs" />
     <Compile Include="Models\CatalogViewModels.cs" />
@@ -262,6 +263,8 @@
     <Content Include="Views\Shared\TestPartial.cshtml" />
     <Content Include="Views\Shared\MainMenuPartial.cshtml" />
     <Content Include="Views\basket\Index.cshtml" />
+    <Content Include="Views\Shared\CatalogMenuPartial.cshtml" />
+    <Content Include="Views\Shared\BasketPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

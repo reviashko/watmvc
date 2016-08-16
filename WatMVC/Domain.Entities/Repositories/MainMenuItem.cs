@@ -8,16 +8,20 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class MenuItem
+    public class MainMenuItem
     {
-        public string Item_name { get; set; }
+        public int Item_id { get; set; }
+
+        private string _item_name;
+        public string Item_name{ get; set; }
 
         public string Item_url { get; set; }
 
-        public MenuItem()
+        public MainMenuItem()
         {
-            Item_name = "";
             Item_url = "";
+            Item_name = "";
+            Item_id = 0;
         }
 
     }

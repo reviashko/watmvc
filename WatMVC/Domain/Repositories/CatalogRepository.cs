@@ -11,31 +11,24 @@ namespace Domain
 {
     public class CatalogRepository : ICatalogRepository
     {
-        public List<Product> GetGoodsByBrandSeriaArticul(string subject_name, string brand_name, string seria_name, string articul)
+        public List<Product> GetGoodsByBrandSeriaArticul(int brand_id, int seria_id, string articul)
         {
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.GoodsFilter");
-            db.AddParameter(new SqlParameter("@brand_name", brand_name));
-            db.AddParameter(new SqlParameter("@seria_name", seria_name));
+            db.AddParameter(new SqlParameter("@brand_id", brand_id));
+            db.AddParameter(new SqlParameter("@seria_id", seria_id));
             db.AddParameter(new SqlParameter("@articul", articul));
 
-            if (!subject_name.Equals("all"))
-            {
-                db.AddParameter(new SqlParameter("@subject_name", subject_name));
-            }
             return db.Query<Product>();
         }
 
-        public List<Product> GetGoodsByBrandSeria(string subject_name, string brand_name, string seria_name)
+        public List<Product> GetGoodsByBrandSeria(int brand_id, int seria_id)
         {
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.GoodsFilter");
-            db.AddParameter(new SqlParameter("@brand_name", brand_name));
-            db.AddParameter(new SqlParameter("@seria_name", seria_name));
-            if (!subject_name.Equals("all"))
-            {
-                db.AddParameter(new SqlParameter("@subject_name", subject_name));
-            }
+            db.AddParameter(new SqlParameter("@brand_id", brand_id));
+            db.AddParameter(new SqlParameter("@seria_id", seria_id));
+
             return db.Query<Product>();
         }
         

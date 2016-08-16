@@ -72,6 +72,8 @@ namespace Domain.Entities
 
         public byte Pdf { get; set; }
 
+        public int Basket_id { get; set; }
+
         public Product()
         {
             Weight = 0;
@@ -101,6 +103,7 @@ namespace Domain.Entities
             Brand_url = "";
             Seria_url = "";
             Pdf = 0;
+            Basket_id = 0;
         }
     }
 }

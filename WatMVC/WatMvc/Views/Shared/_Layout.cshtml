@@ -15,12 +15,12 @@
 </head>
 <body>
 
-    <div class="mcentr">@{ Html.RenderAction("MainMenu", "catalog"); }</div>
-    <div class="mcentr">
+    <div class="mheader">@{ Html.RenderAction("MainMenu", "catalog"); }</div>
+    <div class="mcontent">
         <div class="fleft lmenu">
-            @{ Html.RenderAction("LeftMenu", "catalog"); }
+            @{ Html.RenderAction("CatalogMenu", "catalog"); }
         </div>
-        <div class="fleft content">
+        <div id="content">
             @RenderBody()
         </div>
         <div class="cl"></div>

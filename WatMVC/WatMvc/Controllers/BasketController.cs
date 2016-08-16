@@ -23,14 +23,29 @@ namespace WatMvc.Controllers
             int client_id = 1;
             var basketItems = _basketService.Get(client_id);
 
-            return View("Index", new BasketViewModels() { BasketItems = basketItems });
+            return View("Index", new BasketViewModels() { Products = basketItems });
         }
 
         [HttpPost]
-        public ActionResult Add(int goods_id, byte cnt = 1)
+        public JsonResult Get()
+        {
+            int client_id = 1;
+            var basketItems = _basketService.Get(client_id);
+            return Json(new { bit = basketItems }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Add(int goods_id, byte cnt = 1)
         {
             int client_id = 1;
             return Json(new { name = String.Format("{0} {1}added" , goods_id, _basketService.Add(client_id, goods_id, cnt) ? "" : " not ") });
+        }
+
+        [HttpPost]
+        public JsonResult Remove(int basket_id)
+        {
+            int client_id = 1;
+            return Json(new { name = String.Format("{0}removed", _basketService.Remove(client_id, basket_id) ? "" : " not ") });
         }
 
     }

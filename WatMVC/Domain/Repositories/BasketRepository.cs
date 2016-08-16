@@ -22,6 +22,16 @@ namespace Domain
             return db.GetReturnValue<bool>();
         }
 
+        public bool Remove(int client_id, int basket_id)
+        {
+            IDataBase db = new MSSql();
+            db.SetStoredProcedure("MVCWeb.Basket_Remove");
+            db.AddParameter(new SqlParameter("@client_id", client_id));
+            db.AddParameter(new SqlParameter("@basket_id", basket_id));
+
+            return db.GetReturnValue<bool>();
+        }
+
         public List<Product> Get(int client_id)
         {
             IDataBase db = new MSSql();

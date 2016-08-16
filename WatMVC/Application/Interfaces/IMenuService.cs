@@ -12,8 +12,11 @@ namespace Application
 {
     public interface IMenuService
     {
-        List<MenuItem> GetMainMenuItems();
-        List<MenuItem> GetLeftMenuItems();
+        List<MainMenuItem> GetMainMenuItems();
+        List<CatalogMenuItem> GetCatalogMenuItems();
+        CatalogMenuItem GetCatalogMenuItemByAttr(string brand_name, string seria_name);
+        CatalogMenuItem GetCatalogMenuItemById(int menu_id);
+        MainMenuItem GetMainMenuItemById(int menu_id);
 
     }
 }

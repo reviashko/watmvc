@@ -5,6 +5,6 @@ namespace WatMvc.Models
 {
     public class BasketViewModels
     {
-        public List<Product> BasketItems { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

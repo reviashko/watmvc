@@ -40,7 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\MenuItem.cs" />
+    <Compile Include="Repositories\MainMenuItem.cs" />
+    <Compile Include="Repositories\CatalogMenuItem.cs" />
     <Compile Include="Repositories\Product.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace Domain
     public interface IBasketRepository
     {
         bool Add(int client_id, int goods_id, byte count);
-
         List<Product> Get(int client_id);
+        bool Remove(int client_id, int basket_id);
     }
 }

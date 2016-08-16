@@ -3,16 +3,17 @@ BODY {
     font-size:12px;
 }
 DIV.GItm {
-    width:260px;
-    height:400px;
-    /*border:1px solid red;*/
-    padding-top:70px;
+    width:250px;
+    height:370px;
+    padding-top:15px;
     float:left;
 }
 
 DIV.GItm IMG.lazy{
     display:block;
     margin:0 auto;
+    cursor:pointer;
+    cursor:hand;
 }
 
 DIV.GItm A.headlink{
@@ -34,23 +35,25 @@ a{
 
 /*--------------------------------*/
 
-.mcentr{
+.mheader{
     border:1px solid red;
     width:1024px;
     margin:0 auto;
 }
 
+.mcontent{
+    border:1px solid red;
+    width:1024px;
+    margin:0 auto;
+    min-height:400px;
+}
+
 .lmenu{
-    width:200px;
+    width:160px;
 }
 
 .lmenu UL LI{
     list-style-type: none;
-}
-
-.content{
-    width:810px;
-    padding:5px;
 }
 
 .cl{
@@ -59,4 +62,34 @@ a{
 
 .fleft{
     float:left;
+}
+
+#content{
+    width:860px;
+    float:left;
+}
+
+.BItm
+{
+    width:850px;
+    float:left;
+    padding-bottom:15px;
+}
+
+.BItm P
+{
+    float:left;
+    padding-left:25px;
+}
+
+.BItm IMG
+{
+    float:left;
+    padding-left:25px;
+}
+
+.BItm DIV
+{
+    float:left;
+    padding-left:25px;
 }

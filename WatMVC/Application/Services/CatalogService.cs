@@ -19,16 +19,16 @@ namespace Application
             _catalogRepository = catalogRepository;
         }
 
-        public List<Product> GetGoodsByBrandSeriaArticul(string subject_name, string brand_name, string seria_name, string articul)
+        public List<Product> GetGoodsByBrandSeriaArticul(int brand_id, int seria_id, string articul)
         {
             // кеш тута
-            return _catalogRepository.GetGoodsByBrandSeriaArticul(subject_name, brand_name, seria_name, articul);
+            return _catalogRepository.GetGoodsByBrandSeriaArticul(brand_id, seria_id, articul);
         }
 
-        public List<Product> GetGoodsByBrandSeria(string subject_name, string brand_name, string seria_name)
+        public List<Product> GetGoodsByBrandSeria(int brand_id, int seria_id)
         {
             // кеш тута
-            return _catalogRepository.GetGoodsByBrandSeria(subject_name, brand_name, seria_name);
+            return _catalogRepository.GetGoodsByBrandSeria(brand_id, seria_id);
         }      
 
     }
