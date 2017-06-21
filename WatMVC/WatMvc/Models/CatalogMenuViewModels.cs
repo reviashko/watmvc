@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace WatMvc.Models
 {
-    public class CatalogViewModels : IViewModel
+    public class CatalogMenuViewModels
     {
         public List<CatalogMenuItem> MenuItems { get; set; }
-        public List<Product> Products { get; set; }
     }
 }

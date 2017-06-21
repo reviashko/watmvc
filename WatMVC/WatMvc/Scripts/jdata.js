@@ -1,19 +1,8 @@
-﻿(function (catalog, $, undefined) {
+﻿(function (product, $, undefined) {
 
-    catalog.OnDocumentReady = function () {
+    product.OnDocumentReady = function () {
         $(document).ready(function () {
 
-            //ctalog
-            LoadTest();
-            InitLazyLoad();
-            //$("#content IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); });
-
-            $(".lmenu A").click(function () {
-                catalog.Open($(this).attr("id"));
-                return false;
-            });
-
-            //card
             $("#add_btn").click(function () {
                 basket.AddToBasket($(this).attr("rel"), $("#add_qnt").val());
                 return false;
@@ -21,13 +10,33 @@
         });
     }
 
+}(window.product = window.product || {}, jQuery));
+
+
+
+(function (catalog, $, undefined) {
+
+    catalog.OnDocumentReady = function () {
+        $(document).ready(function () {
+
+            LoadTest();
+            InitLazyLoad();
+            $("#content IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); });
+           
+            $(".lmenu A").click(function () {
+                catalog.Open($(this).attr("id"));
+                return false;
+            });
+
+        });
+    }
+
     catalog.Open = function (menu_id) {
 
-        //$("#content").html("<img src=\"http://img.watshop.ru/d/loader.gif\"/>");
         $.ajax({
             type: 'POST',
             data: { menu_id: menu_id },
-            url: '/catalog/GetCatalogDataById',
+            url: '/ajax/GetCatalogDataById',
             success: function (res) {
                 var items = res.itms;
                 var menu = res.mnus;
@@ -38,7 +47,7 @@
                 $("#content IMG.lazy").click(function () { window.location.href = menu.Item_url + $(this).attr("rel"); });
             },
             error: function (res) {
-                $("#content").text("error on load");
+                $("#content").text("error on load ((");
             }
         });
     }
@@ -53,7 +62,6 @@
 
     function InitLazyLoad() {
         $("#content IMG.lazy").lazyload();
-        //$(".GItm .logos[rel='1']").append("<img src='http://www.watshop.ru/img/dacha.png'/>");
     }
 
 }(window.catalog = window.catalog || {}, jQuery));
@@ -69,15 +77,13 @@
 
     basket.Open = function (menu_id) {
 
-        //$("#content").html("<img src=\"http://img.watshop.ru/d/loader.gif\"/>");
         $.ajax({
             type: 'POST',
             data: { menu_id: menu_id },
             url: '/basket/Get',
             success: function (res) {
-                var items = res.bit;
                 var template = $.templates("#basketTemplate");
-                var htmlOutput = template.render(items);
+                var htmlOutput = template.render(res.bit);
                 $("#content").html(htmlOutput);
                 InitLazyLoad();
             },

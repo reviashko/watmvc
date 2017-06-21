@@ -18,6 +18,19 @@ namespace Application
         {
             _menuRepository = menuRepository;
         }
+        public CatalogMenuItem GetCatalogMenuItemByCategoryBrandSeria(string category_name, string brand_name, string seria_name)
+        {
+            CatalogMenuItem retval = _menuRepository.GetCatalogMenuItemByCategoryBrandSeria(category_name, brand_name, seria_name);
+            return retval;
+        }
+        public CatalogMenuItem GetCatalogMenuItemByCategoryBrand(string category_name, string brand_name)
+        {
+            return _menuRepository.GetCatalogMenuItemByCategoryBrand(category_name, brand_name);
+        }
+        public CatalogMenuItem GetCatalogMenuItemByCategory(string category_name)
+        {
+            return _menuRepository.GetCatalogMenuItemByCategory(category_name);
+        }
 
         public List<MainMenuItem> GetMainMenuItems()
         {
@@ -25,16 +38,22 @@ namespace Application
             return _menuRepository.GetMainMenuItems();
         }
 
-        public List<CatalogMenuItem> GetCatalogMenuItems()
+        public List<CatalogMenuItem> GetCatalogMenuItems(int category_id)
         {
             // кеш тута
-            return _menuRepository.GetCatalogMenuItems();
+            return _menuRepository.GetCatalogMenuItems(category_id);
         }
 
-        public CatalogMenuItem GetCatalogMenuItemByAttr(string brand_name, string seria_name)
+        public List<CatalogMenuItem> Get(int category_id)
         {
-            return _menuRepository.GetCatalogMenuItemByAttr(brand_name, seria_name);
+            // кеш тута
+            return _menuRepository.GetCatalogMenuItems(category_id);
         }
+
+        //public CatalogMenuItem GetCatalogMenuItemByBrandSeria(string brand_name, string seria_name)
+        //{
+        //return _menuRepository.GetCatalogMenuItemByBrandSeria(brand_name, seria_name);
+        //}
 
         public CatalogMenuItem GetCatalogMenuItemById(int menu_id)
         {

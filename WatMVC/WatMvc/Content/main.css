@@ -36,20 +36,20 @@ a{
 /*--------------------------------*/
 
 .mheader{
-    border:1px solid red;
+    /*border:1px solid red;*/
     width:1024px;
     margin:0 auto;
 }
 
 .mcontent{
-    border:1px solid red;
+    /*border:1px solid red;*/
     width:1024px;
     margin:0 auto;
     min-height:400px;
 }
 
 .lmenu{
-    width:160px;
+    width:164px;
 }
 
 .lmenu UL LI{

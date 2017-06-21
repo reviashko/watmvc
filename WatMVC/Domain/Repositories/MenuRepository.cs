@@ -23,52 +23,59 @@ namespace Domain
 
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.CatalogMenu_Get");
-            _catalog_menu =  db.Query<CatalogMenuItem>();
-    }
+            db.AddParameter(new SqlParameter("@category_id", 0));
+            _catalog_menu = db.Query<CatalogMenuItem>();
+        }
 
         public List<MainMenuItem> GetMainMenuItems()
         {
             return _main_menu;
         }
 
-        public List<CatalogMenuItem> GetCatalogMenuItems()
+        public List<CatalogMenuItem> GetCatalogMenuItems(int category_id)
         {
-            return _catalog_menu;
+            List<CatalogMenuItem> revtal = _catalog_menu.Where(
+                item =>
+                item.Category_id == category_id
+                ).ToList();
+            return revtal;
         }
 
-        public CatalogMenuItem GetCatalogMenuItemByAttr(string brand_name, string seria_name)
+        public CatalogMenuItem GetCatalogMenuItemByCategoryBrandSeria(string category_name, string brand_name, string seria_name)
         {
-            foreach (CatalogMenuItem item in _catalog_menu)
-            {
-                if (item.Brand_name.Equals(brand_name) && item.Seria_name.Equals(seria_name))
-                    return item;
-            }
+            CatalogMenuItem revtal = _catalog_menu.Where(
+                item =>
+                item.Category_name.Equals(category_name)
+                && item.Brand_name.Equals(brand_name)
+                && item.Seria_name.Equals(seria_name)).FirstOrDefault();
+            return revtal;
+        }
 
-            return new CatalogMenuItem();
+        public CatalogMenuItem GetCatalogMenuItemByCategoryBrand(string category_name, string brand_name)
+        {
+            CatalogMenuItem revtal = _catalog_menu.Where(
+                item =>
+                item.Category_name.Equals(category_name)
+                && item.Brand_name.Equals(brand_name)).FirstOrDefault();
+            return revtal;
+        }
+
+        public CatalogMenuItem GetCatalogMenuItemByCategory(string category_name)
+        {
+            CatalogMenuItem revtal = _catalog_menu.Where(
+                item =>
+                item.Category_name.Equals(category_name)).FirstOrDefault();
+            return revtal;
         }
 
         public CatalogMenuItem GetCatalogMenuItemById(int menu_id)
         {
-            foreach(CatalogMenuItem item in _catalog_menu)
-            {
-                if (item.Item_id == menu_id)
-                    return item;
-
-            }
-
-            return new CatalogMenuItem();
+            return _catalog_menu.Where(item => item.Item_id == menu_id).FirstOrDefault();
         }
 
         public MainMenuItem GetMainMenuItemById(int menu_id)
         {
-            foreach (MainMenuItem item in _main_menu)
-            {
-                if (item.Item_id == menu_id)
-                    return item;
-
-            }
-
-            return new MainMenuItem();
+            return _main_menu.Where(item => item.Item_id == menu_id).FirstOrDefault();
         }
 
     }

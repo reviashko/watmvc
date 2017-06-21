@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model dynamic
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,13 +20,22 @@
     <div class="mheader">@{ Html.RenderAction("MainMenu", "catalog"); }</div>
     <div class="mcontent">
         <div class="fleft lmenu">
-            @{ Html.RenderAction("CatalogMenu", "catalog"); }
+
+            @if (Model is Domain.Entities.IViewModel)
+            {
+                var model = Model as Domain.Entities.IViewModel;
+                Html.RenderPartial("CatalogMenuPartial", model);
+            }
+
         </div>
         <div id="content">
             @RenderBody()
         </div>
         <div class="cl"></div>
     </div>
+
+    <div id="tester1"></div>
+    <div id="tester2"></div>
 
     @Scripts.Render("~/bundles/tools")
     @Scripts.Render("~/bundles/bootstrap")

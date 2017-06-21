@@ -32,8 +32,6 @@ namespace Domain.Entities
 
         public string Info { get; set; }
 
-        public string Url { get; set; }
-
         public string Consists_name { get; set; }
 
         public string Country_name { get; set; }
@@ -74,6 +72,12 @@ namespace Domain.Entities
 
         public int Basket_id { get; set; }
 
+        public string Category_name { get; set; }
+
+        public int Category_id { get; set; }
+
+        public string Url { get { return string.Format("/catalog/{0}/{1}/{2}/{3}", Category_name, Brand_name, Seria_name, Articul); } }
+
         public Product()
         {
             Weight = 0;
@@ -85,7 +89,6 @@ namespace Domain.Entities
             Descr_SeoSrc = "";
             Sound = 0;
             UT_video = "";
-            Url = "";
             Info = "";
             Consists_name = "";
             Country_name = "";
@@ -104,6 +107,8 @@ namespace Domain.Entities
             Seria_url = "";
             Pdf = 0;
             Basket_id = 0;
+            Category_name = "";
+            Category_id = 0;
         }
     }
 }
