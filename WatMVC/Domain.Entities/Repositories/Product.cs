@@ -52,7 +52,15 @@ namespace Domain.Entities
 
         public string Color_web { get; set; }
 
-        public string Articul { get; set; }
+        public int Articul { get; set; }
+
+        public int ImgSubFolder
+        {
+            get
+            {
+                return Articul / 10000 * 10000;
+            }
+        }
 
         public int Price { get; set; }
 
@@ -97,7 +105,7 @@ namespace Domain.Entities
             HasImg = false;
             Color_name = "";
             Color_web = "";
-            Articul = "";
+            Articul = 0;
             Price = 0;
             OldPrice = 0;
             Group_id = 0;

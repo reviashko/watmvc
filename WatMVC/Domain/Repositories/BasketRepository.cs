@@ -22,6 +22,17 @@ namespace Domain
             return db.GetReturnValue<bool>();
         }
 
+        public int SaveOrder(int client_id, string pay_type)
+        {
+            IDataBase db = new MSSql();
+            db.SetStoredProcedure("MVCWeb.Order_Save");
+            db.AddParameter(new SqlParameter("@client_id", client_id));
+            db.AddParameter(new SqlParameter("@pay_type", pay_type));
+            
+
+            return db.GetReturnValue<int>();
+        }
+
         public bool Remove(int client_id, int basket_id)
         {
             IDataBase db = new MSSql();

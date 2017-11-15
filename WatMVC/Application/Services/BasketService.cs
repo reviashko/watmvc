@@ -35,5 +35,9 @@ namespace Application
             return _basketRepository.Remove(client_id, basket_id);
         }
 
+        public int SaveOrder(int client_id, string pay_type)
+        {
+            return _basketRepository.SaveOrder(client_id, pay_type);
+        }
     }
 }

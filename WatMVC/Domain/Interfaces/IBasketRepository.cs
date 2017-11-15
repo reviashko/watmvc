@@ -14,5 +14,6 @@ namespace Domain
         bool Add(int client_id, int goods_id, byte count);
         List<Product> Get(int client_id);
         bool Remove(int client_id, int basket_id);
+        int SaveOrder(int client_id);
     }
 }

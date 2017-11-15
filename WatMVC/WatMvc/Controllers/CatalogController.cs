@@ -20,21 +20,13 @@ namespace WatMvc.Views
             _catalogService = catalogService;
             _menuService = menuService;
         }
-
-        public JsonResult GetCatalogDataById(int menu_id)
-        {
-            var menuItem = _menuService.GetCatalogMenuItemById(menu_id);
-            var catalogGoods = _catalogService.GetGoodsByCategoryBrandSeria(menuItem.Category_id, menuItem.Brand_id, menuItem.Seria_id);
-            return Json(new { itms = catalogGoods, mnus = menuItem }, JsonRequestBehavior.AllowGet);
-        }
         
         [ChildActionOnly]
         public PartialViewResult MainMenu()
         {
             var menuItems = _menuService.GetMainMenuItems();
             return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
-        }
-        
+        }        
 
         [Route("catalog/{category_name}/{brand_name}/{seria_name}/{articul}")]
         public ActionResult SeriaProduct(string category_name, string brand_name, string seria_name, string articul)

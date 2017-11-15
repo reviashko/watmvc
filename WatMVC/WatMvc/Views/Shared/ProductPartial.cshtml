@@ -6,6 +6,7 @@
 <div>
     <div class="fleft">
         <img src="http://img.watshop.ru/small/@(Model.Product.HasImg ? Model.Product.Link_id.ToString() : "0").jpg" alt="@Model.Product.Name" />
+        <img alt="@Model.Product.Name" src="http://img1.wbstatic.net/c246x328/new/@Model.Product.ImgSubFolder/@Model.Product.Articul-1.jpg" />
 
         @if (Model.Product.Pdf > 0)
         {
@@ -19,7 +20,7 @@
             <div>test sound test</div>
         }        
 
-        <div><input id="add_qnt" type="text" value="1" /><input id="add_btn" rel="@Model.Product.Link_id" type="button" value="В КОРЗИНУ" /></div>
+        <div><input id="add_qnt" type="text" value="1" readonly/><input id="add_btn" rel="@Model.Product.Link_id" type="button" value="В КОРЗИНУ" /></div>
         
     </div>
     <div class="fleft">

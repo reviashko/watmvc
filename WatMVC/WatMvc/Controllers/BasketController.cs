@@ -48,5 +48,11 @@ namespace WatMvc.Controllers
             return Json(new { name = String.Format("{0}removed", _basketService.Remove(client_id, basket_id) ? "" : " not ") });
         }
 
+        [HttpPost]
+        public JsonResult SaveOrder(int client_id, string pay_type)
+        {
+            return Json(new { name = String.Format("order {0} saved", _basketService.SaveOrder(client_id, pay_type) ) });
+        }
+
     }
 }

@@ -123,6 +123,21 @@
         });
     }
 
+    basket.SaveOrder = function (client_id, pay_type) {
+
+        $.ajax({
+            url: '/basket/SaveOrder',
+            type: 'POST',
+            data: { client_id: client_id, pay_type: pay_type },
+            success: function (result) {
+                alert(result.name);
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+
     function InitLazyLoad() {
 
         $("#content IMG.lazy").lazyload();
@@ -132,6 +147,13 @@
             basket.Open();
             return false;
         });
+
+        $(".order_btn").click(function () {
+            basket.SaveOrder($(this).attr("rel"));
+            basket.Open();
+            return false;
+        });
+
     }
 
 }(window.basket = window.basket || {}, jQuery));

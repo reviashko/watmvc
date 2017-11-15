@@ -18,8 +18,8 @@ namespace Domain
         public MenuRepository()
         {
             _main_menu = new List<MainMenuItem>();
-            _main_menu.Add(new MainMenuItem { Item_name = "home", Item_url = "/", Item_id = 1 });
-            _main_menu.Add(new MainMenuItem { Item_name = "basket", Item_url = "/basket", Item_id = 2 });
+            _main_menu.Add(new MainMenuItem { Item_name = "home", Item_url = "/", Item_id = 1, Item_tag = "_hm_" });
+            _main_menu.Add(new MainMenuItem { Item_name = "basket", Item_url = "/basket", Item_id = 2, Item_tag = "_bsk_" });
 
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.CatalogMenu_Get");

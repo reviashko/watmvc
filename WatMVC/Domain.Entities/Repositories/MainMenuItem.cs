@@ -17,11 +17,14 @@ namespace Domain.Entities
 
         public string Item_url { get; set; }
 
+        public string Item_tag { get; set; }
+
         public MainMenuItem()
         {
             Item_url = "";
             Item_name = "";
             Item_id = 0;
+            Item_tag = "";
         }
 
     }

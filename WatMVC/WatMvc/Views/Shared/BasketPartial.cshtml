@@ -3,7 +3,7 @@
 @foreach (var product in Model.Products )
 {
     <div class="BItm">
-        <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/tm/@(product.HasImg ? product.Link_id.ToString() : "0").png" />
+        <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img1.wbstatic.net/c246x328/new/@product.ImgSubFolder/@product.Articul-1.jpg" />
         <p>
             <table>
                 @if (@product.Sound > 0)
@@ -25,3 +25,5 @@
         </div>
     </div>
 }
+
+<input type="button" class="order_btn" value="ОФормить заказ" rel="1" />

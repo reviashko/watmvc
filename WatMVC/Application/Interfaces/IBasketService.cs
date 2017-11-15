@@ -15,6 +15,7 @@ namespace Application
         List<Product> Get(int client_id);
         bool Add(int client_id, int goods_id, byte count);
         bool Remove(int client_id, int basket_id);
+        int SaveOrder(int client_id, string pay_type);
 
     }
 }

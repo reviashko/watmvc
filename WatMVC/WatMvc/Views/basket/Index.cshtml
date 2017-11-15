@@ -16,13 +16,16 @@
 
 
     <div class="BItm">
+
+
         {{if HasImg}}
-        <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/tm/{{:Link_id}}.png" />
+        <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img1.wbstatic.net/c246x328/new/{{:ImgSubFolder}}/{{:Articul}}-1.jpg" />
         {{/if}}
 
         {{if !HasImg}}
-        <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/tm/0.png" />
+        <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/0.jpg" />
         {{/if}}
+
         <p>
             <table>
                 {{if Sound > 0}}

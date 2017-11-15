@@ -9,13 +9,6 @@ namespace WatMvc.Controllers
 {
     public class AjaxController : Controller
     {
-        // GET: Ajax
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-
         ICatalogService _catalogService;
         IMenuService _menuService;
 
