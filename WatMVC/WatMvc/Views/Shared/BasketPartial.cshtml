@@ -1,29 +1,33 @@
 ﻿@model WatMvc.Models.BasketViewModels
 
-@foreach (var product in Model.Products )
-{
-    <div class="BItm">
-        <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img1.wbstatic.net/c246x328/new/@product.ImgSubFolder/@product.Articul-1.jpg" />
-        <p>
-            <table>
-                @if (@product.Sound > 0)
-                {
-                    <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/@product.Url/#sound">@product.Sound</a></td></tr>
-                }
-                @if (@product.UT_video.Length > 0)
-                {
-                    <tr><td>Видео обзор</td><td><a href="/@product.Url/#video"><div class="videoLbl"></div></a></td></tr>
-                }
-                <tr><td>Марка</td><td>: <b>@product.Brand_name</b></td></tr>
-                <tr><td>Артикул</td><td>: <b>@product.Articul</b></td></tr>
-                <tr><td>Цвет</td><td>: <b>@product.Color_name</b></td></tr>
-                <tr><td>Цена</td><td>: @product.Price руб.</td></tr>
-            </table>
-        </p>
-        <div>
-            <input type="button" class="rem_btn" value="Удалить" rel="@product.Basket_id" />
-        </div>
-    </div>
-}
+<div id="BasketItems">
 
-<input type="button" class="order_btn" value="ОФормить заказ" rel="1" />
+    @foreach (var product in Model.Products)
+    {
+        <div class="BItem">
+            <img alt="@product.Name" rel="@product.Articul" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img1.wbstatic.net/c246x328/new/@product.ImgSubFolder/@product.Articul-1.jpg" />
+            <p>
+                <table>
+                    @if (@product.Sound > 0)
+                {
+                        <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/@product.Url/#sound">@product.Sound</a></td></tr>
+                    }
+                    @if (@product.UT_video.Length > 0)
+                {
+                        <tr><td>Видео обзор</td><td><a href="/@product.Url/#video"><div class="videoLbl"></div></a></td></tr>
+                    }
+                    <tr><td>Марка</td><td>: <b>@product.Brand_name</b></td></tr>
+                    <tr><td>Артикул</td><td>: <b>@product.Articul</b></td></tr>
+                    <tr><td>Цвет</td><td>: <b>@product.Color_name</b></td></tr>
+                    <tr><td>Цена</td><td>: @product.Price руб.</td></tr>
+                </table>
+            </p>
+            <div>
+                <input type="button" class="rem_btn" value="Удалить" rel="@product.Basket_id" />
+            </div>
+        </div>
+    }
+
+    <input type="button" class="order_btn" value="ОФормить заказ" rel="1" />
+
+</div>

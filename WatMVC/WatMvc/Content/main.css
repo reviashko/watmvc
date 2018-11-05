@@ -69,26 +69,26 @@ a{
     float:left;
 }
 
-.BItm
+.BItem
 {
     width:850px;
     float:left;
     padding-bottom:15px;
 }
 
-.BItm P
+.BItem P
 {
     float:left;
     padding-left:25px;
 }
 
-.BItm IMG
+.BItem IMG
 {
     float:left;
     padding-left:25px;
 }
 
-.BItm DIV
+.BItem DIV
 {
     float:left;
     padding-left:25px;

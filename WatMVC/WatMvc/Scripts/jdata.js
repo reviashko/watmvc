@@ -129,11 +129,15 @@
             url: '/basket/SaveOrder',
             type: 'POST',
             data: { client_id: client_id, pay_type: pay_type },
-            success: function (result) {
+            success: function (result)
+            {
+                $("#BasketItems").text(result.name);
                 alert(result.name);
             },
-            error: function () {
-                alert("error");
+            error: function (xhr, status, error)
+            {
+                var err = JSON.parse(xhr.responseText);
+                alert(err.Message);
             }
         });
     }
@@ -149,7 +153,15 @@
         });
 
         $(".order_btn").click(function () {
-            basket.SaveOrder($(this).attr("rel"));
+
+            var ptype = $("input[name='ptype_radio']:checked").val();
+            if (typeof ptype === "undefined")
+            {
+                alert("Не выбран способ оплаты");
+                return false;
+            }
+
+            basket.SaveOrder($(this).attr("rel"), ptype);
             basket.Open();
             return false;
         });

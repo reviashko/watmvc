@@ -11,10 +11,12 @@ namespace WatMvc.Controllers
     public class BasketController : Controller
     {
         IBasketService _basketService;
+        IPaymentService _paymentService;
 
-        public BasketController(IBasketService basketService)
+        public BasketController(IBasketService basketService, IPaymentService paymentService)
         {
             _basketService = basketService;
+            _paymentService = paymentService;
         }
 
         [Route("basket/")]
@@ -22,8 +24,9 @@ namespace WatMvc.Controllers
         {
             int client_id = 1;
             var basketItems = _basketService.Get(client_id);
+            var paymentTypes = _paymentService.Get();
 
-            return View("Index", new BasketViewModels() { Products = basketItems });
+            return View("Index", new BasketViewModels() { Products = basketItems, PaymentTypes = paymentTypes });
         }
 
         [HttpPost]
@@ -51,6 +54,11 @@ namespace WatMvc.Controllers
         [HttpPost]
         public JsonResult SaveOrder(int client_id, string pay_type)
         {
+            if(!_paymentService.IsExists(pay_type))
+            {
+                return Json(new { name = "Нет такой оплаты" });
+            }
+
             return Json(new { name = String.Format("order {0} saved", _basketService.SaveOrder(client_id, pay_type) ) });
         }
 

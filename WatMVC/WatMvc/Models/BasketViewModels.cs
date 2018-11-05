@@ -6,5 +6,6 @@ namespace WatMvc.Models
     public class BasketViewModels
     {
         public List<Product> Products { get; set; }
+        public List<PaymentType> PaymentTypes { get; set; }
     }
 }

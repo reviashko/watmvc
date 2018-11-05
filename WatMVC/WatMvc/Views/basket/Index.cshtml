@@ -4,45 +4,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("BasketPartial", Model)
+
+@if (Model.Products.Count > 0)
+{
+    @Html.Partial("BasketPartial", Model)
+    @Html.Partial("PaymentTypesPartial", Model)
 
 
-@section scripts{
-<script type="text/javascript">
+    @section scripts{
+        <script type="text/javascript">
     basket.OnDocumentReady();
-</script>
+        </script>
 
-<script id="basketTemplate" type="text/x-jsrender">
-
-
-    <div class="BItm">
+        <script id="basketTemplate" type="text/x-jsrender">
 
 
-        {{if HasImg}}
-        <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img1.wbstatic.net/c246x328/new/{{:ImgSubFolder}}/{{:Articul}}-1.jpg" />
-        {{/if}}
+            <div class="BItem">
 
-        {{if !HasImg}}
-        <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/0.jpg" />
-        {{/if}}
 
-        <p>
-            <table>
-                {{if Sound > 0}}
-                <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/{{:Url}}/#sound">{{:Sound}}</a></td></tr>
+                {{if HasImg}}
+                <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img1.wbstatic.net/c246x328/new/{{:ImgSubFolder}}/{{:Articul}}-1.jpg" />
                 {{/if}}
-                {{if UT_video.Length > 0}}
-                <tr><td>Видео обзор</td><td><a href="/{{:Url}}/#video"><div class="videoLbl"></div></a></td></tr>
+
+                {{if !HasImg}}
+                <img alt="{{:Name}}" rel="{{:Articul}}" src="http://img.watshop.ru/d/loader.gif" class="lazy" data-original="http://img.watshop.ru/small/0.jpg" />
                 {{/if}}
-                <tr><td>Марка</td><td>: <b>{{:Brand_name}}</b></td></tr>
-                <tr><td>Артикул</td><td>: <b>{{:Articul}}</b></td></tr>
-                <tr><td>Цвет</td><td>: <b>{{:Color_name}}</b></td></tr>
-                <tr><td>Цена</td><td>: {{:Price}} руб.</td></tr>
-            </table>
-        </p>
-        <div>
-            <input type="button" class="rem_btn" value="Удалить" rel="{{:Basket_id}}" />
-        </div>
-    </div>
-</script>
+
+                <p>
+                    <table>
+                        {{if Sound > 0}}
+                        <tr><td>Всего мелодий</td><td>:&nbsp;<a href="/{{:Url}}/#sound">{{:Sound}}</a></td></tr>
+                        {{/if}}
+                        {{if UT_video.Length > 0}}
+                        <tr><td>Видео обзор</td><td><a href="/{{:Url}}/#video"><div class="videoLbl"></div></a></td></tr>
+                        {{/if}}
+                        <tr><td>Марка</td><td>: <b>{{:Brand_name}}</b></td></tr>
+                        <tr><td>Артикул</td><td>: <b>{{:Articul}}</b></td></tr>
+                        <tr><td>Цвет</td><td>: <b>{{:Color_name}}</b></td></tr>
+                        <tr><td>Цена</td><td>: {{:Price}} руб.</td></tr>
+                    </table>
+                </p>
+                <div>
+                    <input type="button" class="rem_btn" value="Удалить" rel="{{:Basket_id}}" />
+                </div>
+            </div>
+        </script>
+    }
+}
+else {
+    <div>Нет товаров</div>
 }

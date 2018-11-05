@@ -266,6 +266,7 @@
     <Content Include="Views\basket\Index.cshtml" />
     <Content Include="Views\Shared\CatalogMenuPartial.cshtml" />
     <Content Include="Views\Shared\BasketPartial.cshtml" />
+    <Content Include="Views\Shared\PaymentTypesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

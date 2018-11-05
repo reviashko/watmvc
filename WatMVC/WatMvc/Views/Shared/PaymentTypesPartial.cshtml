@@ -1,0 +1,9 @@
+﻿@model WatMvc.Models.BasketViewModels
+
+<div>
+    <p><b>Выберите способ оплаты:</b></p>
+    @foreach (var item in Model.PaymentTypes)
+    {
+        <p><input name="ptype_radio" type="radio" value="@item.PType_id">@item.PType_Name</p>
+    }
+</div>

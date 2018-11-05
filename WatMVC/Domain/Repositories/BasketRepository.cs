@@ -28,7 +28,6 @@ namespace Domain
             db.SetStoredProcedure("MVCWeb.Order_Save");
             db.AddParameter(new SqlParameter("@client_id", client_id));
             db.AddParameter(new SqlParameter("@pay_type", pay_type));
-            
 
             return db.GetReturnValue<int>();
         }
