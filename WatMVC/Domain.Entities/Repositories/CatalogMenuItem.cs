@@ -10,39 +10,19 @@ namespace Domain.Entities
 {
     public class CatalogMenuItem
     {
-        public int Item_id { get; set; }
+        public int Menu_id { get; set; }
 
-        public int Brand_id { get; set; }
+        public int Menu_pid { get; set; }
 
-        public string Brand_name { get; set; }
-
-        public int Seria_id { get; set; }
-
-        public string Seria_name { get; set; }
-
-        public int Category_id { get; set; }
-
-        public string Category_name { get; set; }        
-
-        public string Item_url
-        {
-            get { return String.Format("/catalog/{0}/{1}/{2}/", Category_name, Brand_name, Seria_name); }
-        }
-
-        public string Item_name
-        {
-            get { return String.Format("{0} {1}", Brand_name.Substring(0, 1).ToUpper() +  Brand_name.Substring(1), Seria_name.Substring(0, 1).ToUpper() + Seria_name.Substring(1)); }
-        }
+        public string Menu_name { get; set; }
+        public string Menu_url { get; set; }
 
         public CatalogMenuItem()
         {
-            Item_id = 0;
-            Brand_id = 0;
-            Brand_name = "";
-            Seria_id = 0;
-            Seria_name = "";
-            Category_id = 0;
-            Category_name = "";
+            Menu_id = 0;
+            Menu_pid = 0;
+            Menu_name = "";
+            Menu_url = "";
         }
 
     }

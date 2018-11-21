@@ -26,85 +26,61 @@ namespace WatMvc.Views
         {
             var menuItems = _menuService.GetMainMenuItems();
             return PartialView("MainMenuPartial", new MainMenuViewModels() { MenuItems = menuItems });
-        }        
-
-        [Route("catalog/{category_name}/{brand_name}/{seria_name}/{articul}")]
-        public ActionResult SeriaProduct(string category_name, string brand_name, string seria_name, string articul)
-        {
-            var menuItem = _menuService.GetCatalogMenuItemByCategoryBrandSeria(category_name.ToLower(), brand_name.ToLower(), seria_name.ToLower());
-            if (menuItem == null)
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
-
-            var catalogGoods = _catalogService.GetGoodsByCategoryBrandSeriaArticul(menuItem.Category_id, menuItem.Brand_id, menuItem.Seria_id, articul);
-            if(catalogGoods.Count > 0)
-            {
-                var catalogMenu = _menuService.GetCatalogMenuItems(menuItem.Category_id);
-                return View("Product", new ProductViewModels() { Product = catalogGoods[0], MenuItems = catalogMenu });
-            }
-            else
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
-            
         }
 
-        [Route("catalog/{category_name}/{brand_name}/{seria_name}")]
-        public ActionResult CategoryBrandSeria(string category_name, string brand_name, string seria_name)
+        [ChildActionOnly]
+        public PartialViewResult CatalogMenu()
         {
-            var menuItem = _menuService.GetCatalogMenuItemByCategoryBrandSeria(category_name.ToLower(), brand_name.ToLower(), seria_name.ToLower());
-            if (menuItem == null)
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
-
-            var catalogGoods = _catalogService.GetGoodsByCategoryBrandSeria(menuItem.Category_id, menuItem.Brand_id, menuItem.Seria_id);
-            if (catalogGoods.Count < 1)
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
-            var catalogMenu = _menuService.GetCatalogMenuItems(menuItem.Category_id);
-            //ViewBag.Title = "Ресурс не найден";
-            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
+            var catalogMenu = _menuService.GetCatalogMenuItems(0);
+            return PartialView("CatalogMenuPartial", new CatalogMenuViewModels() { MenuItems = catalogMenu });
         }
 
-        [Route("catalog/{category_name}/{brand_name}")]
-        public ActionResult CategoryBrand(string category_name, string brand_name)
+        [Route("catalog")]
+        public ActionResult CategoryStart()
         {
-            var menuItem = _menuService.GetCatalogMenuItemByCategoryBrand(category_name.ToLower(), brand_name.ToLower());
-            if (menuItem == null)
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
+            var catalogMenu = _menuService.GetCatalogMenuItems(0);
 
-            var catalogGoods = _catalogService. GetGoodsByCategoryBrand(menuItem.Category_id, menuItem.Brand_id);
-            if (catalogGoods.Count < 1)
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
-
-            //ViewBag.Title = "Ресурс не найден";
-            var catalogMenu = _menuService.GetCatalogMenuItems(menuItem.Category_id);
+            var catalogGoods = _catalogService.GetGoodsByMenuId(0);
 
             return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
         }
 
-        [Route("catalog/{category_name}")]
-        public ActionResult Category(string category_name)
+        [Route("catalog/{menu_url}/{brand_name}/{articul}/")]
+        public ActionResult Category(string menu_url, string brand_name, string articul)
         {
-            var menuItem = _menuService.GetCatalogMenuItemByCategory(category_name.ToLower());
-            if (menuItem == null)
+            var catalogMenuItem = _menuService.GetCatalogMenuItemByUrl(menu_url);
+            if (catalogMenuItem.Menu_id > 1)
             {
-                return HttpNotFound("Ресурс не найден");
+                return HttpNotFound("Адрес не найден");
             }
 
-            var catalogGoods = _catalogService.GetGoodsByCategory(menuItem.Category_id);
+            var catalogMenu = _menuService.GetCatalogMenuItems(catalogMenuItem.Menu_id);
+
+            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id);
             if (catalogGoods.Count < 1)
             {
                 return HttpNotFound("Ресурс не найден");
             }
-            var catalogMenu = _menuService.GetCatalogMenuItems(menuItem.Category_id);
+
+            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
+        }
+
+        [Route("catalog/{menu_url}/")]
+        public ActionResult Category(string menu_url)
+        {
+            var catalogMenuItem = _menuService.GetCatalogMenuItemByUrl(menu_url);
+            if (catalogMenuItem.Menu_id > 1)
+            {
+                return HttpNotFound("Адрес не найден");
+            }
+
+            var catalogMenu = _menuService.GetCatalogMenuItems(catalogMenuItem.Menu_id);
+
+            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id);
+            if (catalogGoods.Count < 1)
+            {
+                return HttpNotFound("Ресурс не найден");
+            }
 
             return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
         }

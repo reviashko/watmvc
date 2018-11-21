@@ -18,19 +18,7 @@ namespace Application
         {
             _menuRepository = menuRepository;
         }
-        public CatalogMenuItem GetCatalogMenuItemByCategoryBrandSeria(string category_name, string brand_name, string seria_name)
-        {
-            CatalogMenuItem retval = _menuRepository.GetCatalogMenuItemByCategoryBrandSeria(category_name, brand_name, seria_name);
-            return retval;
-        }
-        public CatalogMenuItem GetCatalogMenuItemByCategoryBrand(string category_name, string brand_name)
-        {
-            return _menuRepository.GetCatalogMenuItemByCategoryBrand(category_name, brand_name);
-        }
-        public CatalogMenuItem GetCatalogMenuItemByCategory(string category_name)
-        {
-            return _menuRepository.GetCatalogMenuItemByCategory(category_name);
-        }
+
 
         public List<MainMenuItem> GetMainMenuItems()
         {
@@ -38,31 +26,27 @@ namespace Application
             return _menuRepository.GetMainMenuItems();
         }
 
-        public List<CatalogMenuItem> GetCatalogMenuItems(int category_id)
-        {
-            // кеш тута
-            return _menuRepository.GetCatalogMenuItems(category_id);
-        }
-
-        public List<CatalogMenuItem> Get(int category_id)
-        {
-            // кеш тута
-            return _menuRepository.GetCatalogMenuItems(category_id);
-        }
-
-        //public CatalogMenuItem GetCatalogMenuItemByBrandSeria(string brand_name, string seria_name)
-        //{
-        //return _menuRepository.GetCatalogMenuItemByBrandSeria(brand_name, seria_name);
-        //}
-
-        public CatalogMenuItem GetCatalogMenuItemById(int menu_id)
-        {
-            return _menuRepository.GetCatalogMenuItemById(menu_id);
-        }
-
         public MainMenuItem GetMainMenuItemById(int menu_id)
         {
             return _menuRepository.GetMainMenuItemById(menu_id);
+        }
+
+
+        public List<CatalogMenuItem> GetCatalogMenuItems(int menu_pid)
+        {
+            // кеш тута
+            return _menuRepository.GetCatalogMenuItems(menu_pid);
+        }
+        public CatalogMenuItem GetCatalogMenuItemByUrl(string menu_url)
+        {
+            // кеш тута
+            return _menuRepository.GetCatalogMenuItemByUrl(menu_url);
+        }
+
+        public CatalogMenuItem GetCatalogMenuItemById(int menu_id)
+        {
+            // кеш тута
+            return _menuRepository.GetCatalogMenuItemById(menu_id);
         }
 
     }

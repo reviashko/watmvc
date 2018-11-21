@@ -21,11 +21,7 @@
     <div class="mcontent">
         <div class="fleft lmenu">
 
-            @if (Model is Domain.Entities.IViewModel)
-            {
-                var model = Model as Domain.Entities.IViewModel;
-                Html.RenderPartial("CatalogMenuPartial", model);
-            }
+            @{ Html.RenderAction("CatalogMenu", "catalog"); }
 
         </div>
         <div id="content">
@@ -40,5 +36,6 @@
     @Scripts.Render("~/bundles/tools")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

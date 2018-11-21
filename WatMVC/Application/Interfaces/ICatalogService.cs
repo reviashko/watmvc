@@ -12,9 +12,6 @@ namespace Application
 {
     public interface ICatalogService
     {
-        List<Product> GetGoodsByCategoryBrandSeriaArticul(int category_id, int brand_id, int seria_id, string articul);
-        List<Product> GetGoodsByCategoryBrandSeria(int category_id, int brand_id, int seria_id);
-        List<Product> GetGoodsByCategoryBrand(int category_id, int brand_id);
-        List<Product> GetGoodsByCategory(int category_id);
+        List<Product> GetGoodsByMenuId(int menu_id);
     }
 }

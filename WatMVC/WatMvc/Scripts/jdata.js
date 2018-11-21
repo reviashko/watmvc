@@ -4,7 +4,7 @@
         $(document).ready(function () {
 
             $("#add_btn").click(function () {
-                basket.AddToBasket($(this).attr("rel"), $("#add_qnt").val());
+                basket.AddToBasket($(this).attr("rel"), 1);
                 return false;
             });
         });
@@ -131,8 +131,7 @@
             data: { client_id: client_id, pay_type: pay_type },
             success: function (result)
             {
-                $("#BasketItems").text(result.name);
-                alert(result.name);
+                $("#content").html("Спасибо за заказ");
             },
             error: function (xhr, status, error)
             {

@@ -1,13 +1,9 @@
-﻿@model Domain.Entities.IViewModel
+﻿@model WatMvc.Models.CatalogMenuViewModels
 
-@{    
-    if (Model.MenuItems != null)
+<ul>
+    @foreach (var item in Model.MenuItems)
     {
-        <ul>
-            @foreach (var item in Model.MenuItems)
-            {
-                <li><a href="@item.Item_url" id="@item.Item_id">@item.Item_name</a></li>
-            }
-        </ul>
+        <li><a href="/catalog/@item.Menu_url/" id="@item.Menu_id">@item.Menu_name</a></li>
     }
-}
+
+</ul>
