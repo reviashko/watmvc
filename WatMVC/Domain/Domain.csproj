@@ -47,6 +47,7 @@
     <Compile Include="Interfaces\ICookieManager.cs" />
     <Compile Include="Interfaces\IXMLRepository.cs" />
     <Compile Include="Interfaces\IMenuRepository.cs" />
+    <Compile Include="Repositories\ProductCacheRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Repositories\Dapper.cs" />
     <Compile Include="Repositories\DataBase.cs" />

@@ -45,31 +45,25 @@ namespace WatMvc.Views
             return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
         }
 
-        [Route("catalog/{menu_url}/{brand_name}/{articul}/")]
-        public ActionResult Category(string menu_url, string brand_name, string articul)
+        [Route("catalog/{brand_name}/{articul}/")]
+        public ActionResult Category(string brand_name, int articul)
         {
-            var catalogMenuItem = _menuService.GetCatalogMenuItemByUrl(menu_url);
-            if (catalogMenuItem.Menu_id > 1)
+            var catalogMenu = _menuService.GetCatalogMenuItems(0);
+
+            var product = _catalogService.GetGoodsByArticul(articul, brand_name);
+            if (product == null || product.Articul == 0)
             {
                 return HttpNotFound("Адрес не найден");
             }
 
-            var catalogMenu = _menuService.GetCatalogMenuItems(catalogMenuItem.Menu_id);
-
-            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id);
-            if (catalogGoods.Count < 1)
-            {
-                return HttpNotFound("Ресурс не найден");
-            }
-
-            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
+            return View("Product", new ProductViewModels() { Product = product, MenuItems = catalogMenu });
         }
 
         [Route("catalog/{menu_url}/")]
         public ActionResult Category(string menu_url)
         {
             var catalogMenuItem = _menuService.GetCatalogMenuItemByUrl(menu_url);
-            if (catalogMenuItem.Menu_id > 1)
+            if (catalogMenuItem == null)
             {
                 return HttpNotFound("Адрес не найден");
             }

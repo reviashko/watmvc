@@ -12,6 +12,7 @@ namespace Domain
     public interface ICatalogRepository
     {
   
-        List<Product> GetGoodsByMenuId(int menu_id);
+        List<int> GetArticulsByMenuId(int menu_id);
+        List<Product> GetArticulsByMenuId(byte[] articuls_bin);
     }
 }

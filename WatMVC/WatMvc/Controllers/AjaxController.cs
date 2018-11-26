@@ -26,7 +26,7 @@ namespace WatMvc.Controllers
                 return Json(new { result = 0 }, JsonRequestBehavior.AllowGet);
             }
 
-            var catalogGoods = _catalogService.GetGoodsByMenuId(menuItem.Menu_id);
+            var catalogGoods = _catalogService. GetGoodsByMenuId(menuItem.Menu_id);
             return Json(new { result = 1, itms = catalogGoods, mnus = menuItem }, JsonRequestBehavior.AllowGet);
 
         }

@@ -44,7 +44,7 @@
                 var htmlOutput = template.render(items);
                 $("#content").html(htmlOutput);
                 InitLazyLoad();
-                $("#content IMG.lazy").click(function () { window.location.href = menu.Item_url + $(this).attr("rel"); });
+                $("#content IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); });
             },
             error: function (res) {
                 $("#content").text("error on load ((");

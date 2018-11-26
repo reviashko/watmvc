@@ -84,7 +84,7 @@ namespace Domain.Entities
 
         public int Category_id { get; set; }
 
-        public string Url { get { return string.Format("/catalog/{0}/{1}/{2}/{3}", Category_name, Brand_name, Seria_name, Articul); } }
+        public string Url { get { return string.Format("/catalog/{0}/{1}", Brand_name, Articul).ToLower(); } }
 
         public Product()
         {
