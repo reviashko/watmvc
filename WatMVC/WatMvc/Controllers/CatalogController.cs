@@ -40,7 +40,7 @@ namespace WatMvc.Views
         {
             var catalogMenu = _menuService.GetCatalogMenuItems(0);
 
-            var catalogGoods = _catalogService.GetGoodsByMenuId(0);
+            var catalogGoods = _catalogService.GetGoodsByMenuId(0, 1, 9);
 
             return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
         }
@@ -50,7 +50,7 @@ namespace WatMvc.Views
         {
             var catalogMenu = _menuService.GetCatalogMenuItems(0);
 
-            var product = _catalogService.GetGoodsByArticul(articul, brand_name);
+            var product = _catalogService.GetProductByArticul(articul, brand_name);
             if (product == null || product.Articul == 0)
             {
                 return HttpNotFound("Адрес не найден");
@@ -70,7 +70,7 @@ namespace WatMvc.Views
 
             var catalogMenu = _menuService.GetCatalogMenuItems(catalogMenuItem.Menu_id);
 
-            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id);
+            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id, 1, 9);
             if (catalogGoods.Count < 1)
             {
                 return HttpNotFound("Ресурс не найден");

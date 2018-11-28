@@ -43,10 +43,11 @@ namespace Application
 
         public List<int> GetArticulsByMenuId(int menu_id)
         {
+            //кеш тута
             return _catalogRepository.GetArticulsByMenuId(menu_id);
         }
 
-        public List<Product> GetProducts(List<int> articuls)
+        private List<Product> GetProducts(List<int> articuls)
         {
             byte[] items = GetBytes(articuls);
 
@@ -54,7 +55,7 @@ namespace Application
         }
 
 
-        public List<Product> GetGoodsByMenuId(int menu_id)
+        public List<Product> GetGoodsByMenuId(int menu_id, int page_num, int page_size)
         {
             List <int> items = GetArticulsByMenuId(menu_id);
 
@@ -67,10 +68,26 @@ namespace Application
                 _cache.SaveProducts(cacheLassProducts);
             }
 
-            return _cache.GetProducts(items);
+            List<int> view_items = new List<int>();
+
+            int index = 0;
+            foreach(int articul in items)
+            {
+                if (
+                        index >= (page_num - 1) * page_size
+                        && index < (page_num - 1) * page_size + page_size
+                    )
+                {
+                    view_items.Add(articul);
+                }
+
+                index++;
+            }
+
+            return _cache.GetProducts(view_items);
         }
         
-        public Product GetGoodsByArticul(int articul, string brand_name)
+        public Product GetProductByArticul(int articul, string brand_name)
         {
             List<int> items = new List<int>();
             items.Add(articul);
