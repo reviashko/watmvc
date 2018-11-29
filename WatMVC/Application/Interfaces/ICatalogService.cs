@@ -15,5 +15,6 @@ namespace Application
         List<int> GetArticulsByMenuId(int menu_id);
         List<Product> GetGoodsByMenuId(int menu_id, int page_num, int page_size);
         Product GetProductByArticul(int articul, string brand_name);
+        List<Product> GetProductsByArticuls(List<int> articuls, int page_num, int page_size);
     }
 }

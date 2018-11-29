@@ -13,6 +13,6 @@ namespace Domain
     {
   
         List<int> GetArticulsByMenuId(int menu_id);
-        List<Product> GetArticulsByMenuId(byte[] articuls_bin);
+        List<Product> GetArticulsByArticuls(byte[] articuls_bin);
     }
 }

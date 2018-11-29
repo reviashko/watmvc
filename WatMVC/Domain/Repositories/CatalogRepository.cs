@@ -20,7 +20,7 @@ namespace Domain
             return db.Query<int>();
         }
 
-        public List<Product> GetArticulsByMenuId(byte[] articuls_bin)
+        public List<Product> GetArticulsByArticuls(byte[] articuls_bin)
         {
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.Products_Get");

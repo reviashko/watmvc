@@ -12,10 +12,11 @@ namespace Application
 {
     public interface IBasketService
     {
-        List<Product> Get(int client_id);
-        bool Add(int client_id, int goods_id, byte count);
+        List<BasketItem> Get(int client_id);
+        bool Add(int client_id, int articul, byte count);
         bool Remove(int client_id, int basket_id);
         int SaveOrder(int client_id, string pay_type);
+        List<int> GetArticuls(int client_id);
 
     }
 }

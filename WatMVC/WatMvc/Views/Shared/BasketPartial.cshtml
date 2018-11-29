@@ -23,11 +23,14 @@
                 </table>
             </p>
             <div>
-                <input type="button" class="rem_btn" value="Удалить" rel="@product.Basket_id" />
+                <input type="button" class="rem_btn" value="Удалить" rel="@product.Articul" />
             </div>
         </div>
     }
 
-    <input type="button" class="order_btn" value="ОФормить заказ" rel="1" />
-
 </div>
+
+@if (Model.Products.Count > 0)
+{
+    <input type="button" class="order_btn" value="ОФормить заказ" rel="1" />
+}

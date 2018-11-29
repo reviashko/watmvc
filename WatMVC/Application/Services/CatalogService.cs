@@ -51,15 +51,37 @@ namespace Application
         {
             byte[] items = GetBytes(articuls);
 
-            return _catalogRepository.GetArticulsByMenuId(items);
+            return _catalogRepository.GetArticulsByArticuls(items);
         }
 
-
-        public List<Product> GetGoodsByMenuId(int menu_id, int page_num, int page_size)
+        private List<int> CutItemsByPage(List<int> items, int page_num, int page_size)
         {
-            List <int> items = GetArticulsByMenuId(menu_id);
+            List<int> retval = new List<int>();
 
-            List<int> cacheLessArticuls = _cache.GetCacheLessOnly(items);
+            int start_position = (page_num - 1) * page_size;
+            int finish_position = start_position + page_size;
+
+            if(finish_position > items.Count)
+            {
+                finish_position = items.Count - 1;
+            }
+
+            if(start_position < 0 || finish_position < start_position)
+            {
+                return retval;
+            }
+
+            for(int index = start_position; index <= finish_position; index++)
+            {
+                retval.Add(items[index]);
+            }
+
+            return retval;
+        }
+
+        private void FillCacheByArticuls(List<int> articuls)
+        {
+            List<int> cacheLessArticuls = _cache.GetCacheLessOnly(articuls);
 
             //put to cache here
             if (cacheLessArticuls.Count > 0)
@@ -67,22 +89,21 @@ namespace Application
                 List<Product> cacheLassProducts = GetProducts(cacheLessArticuls);
                 _cache.SaveProducts(cacheLassProducts);
             }
+        }
 
-            List<int> view_items = new List<int>();
 
-            int index = 0;
-            foreach(int articul in items)
-            {
-                if (
-                        index >= (page_num - 1) * page_size
-                        && index < (page_num - 1) * page_size + page_size
-                    )
-                {
-                    view_items.Add(articul);
-                }
+        public List<Product> GetGoodsByMenuId(int menu_id, int page_num, int page_size)
+        {
+            List <int> catalog_items = GetArticulsByMenuId(menu_id);
 
-                index++;
-            }
+            return GetProductsByArticuls(catalog_items, page_num, page_size);
+        }
+
+        public List<Product> GetProductsByArticuls(List<int> articuls, int page_num, int page_size)
+        {
+            List<int> view_items = CutItemsByPage(articuls, page_num, page_size);
+
+            FillCacheByArticuls(view_items);
 
             return _cache.GetProducts(view_items);
         }
@@ -92,14 +113,7 @@ namespace Application
             List<int> items = new List<int>();
             items.Add(articul);
 
-            List<int> cacheLessArticuls = _cache.GetCacheLessOnly(items);
-
-            //put to cache here
-            if (cacheLessArticuls.Count > 0)
-            {
-                List<Product> cacheLassProducts = GetProducts(cacheLessArticuls);
-                _cache.SaveProducts(cacheLassProducts);
-            }
+            FillCacheByArticuls(items);
 
 
             Product retval = _cache.GetProducts(items).FirstOrDefault();

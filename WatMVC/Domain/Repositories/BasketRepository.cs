@@ -11,12 +11,12 @@ namespace Domain
 {
     public class BasketRepository : IBasketRepository
     {
-        public bool Add(int client_id, int goods_id, byte count)
+        public bool Add(int client_id, int articul, byte count)
         {
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.Basket_Add");
             db.AddParameter(new SqlParameter("@client_id", client_id));
-            db.AddParameter(new SqlParameter("@goods_id", goods_id));
+            db.AddParameter(new SqlParameter("@articul", articul));
             db.AddParameter(new SqlParameter("@cnt", count));
 
             return db.GetReturnValue<bool>();
@@ -32,22 +32,22 @@ namespace Domain
             return db.GetReturnValue<int>();
         }
 
-        public bool Remove(int client_id, int basket_id)
+        public bool Remove(int client_id, int articul)
         {
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.Basket_Remove");
             db.AddParameter(new SqlParameter("@client_id", client_id));
-            db.AddParameter(new SqlParameter("@basket_id", basket_id));
+            db.AddParameter(new SqlParameter("@articul", articul));
 
             return db.GetReturnValue<bool>();
         }
 
-        public List<Product> Get(int client_id)
+        public List<BasketItem> Get(int client_id)
         {
             IDataBase db = new MSSql();
             db.SetStoredProcedure("MVCWeb.Basket_Get");
             db.AddParameter(new SqlParameter("@client_id", client_id));
-            return db.Query<Product>();
+            return db.Query<BasketItem>();
         }
     }
 }

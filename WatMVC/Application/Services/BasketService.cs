@@ -19,20 +19,33 @@ namespace Application
             _basketRepository = basketRepository;
         }
 
-        public List<Product> Get(int client_id)
+        public List<BasketItem> Get(int client_id)
         {
             // кеш тута
             return _basketRepository.Get(client_id);
         }
 
-        public bool Add(int client_id, int goods_id, byte count)
+        public List<int> GetArticuls(int client_id)
         {
-            return _basketRepository.Add(client_id, goods_id, count);
+            List<BasketItem> basketItems = Get(client_id);
+            List<int> retval = new List<int>();
+
+            foreach(BasketItem item in basketItems)
+            {
+                retval.Add(item.Articul);
+            }
+
+            return retval;
         }
 
-        public bool Remove(int client_id, int basket_id)
+        public bool Add(int client_id, int articul, byte count)
         {
-            return _basketRepository.Remove(client_id, basket_id);
+            return _basketRepository.Add(client_id, articul, count);
+        }
+
+        public bool Remove(int client_id, int articul)
+        {
+            return _basketRepository.Remove(client_id, articul);
         }
 
         public int SaveOrder(int client_id, string pay_type)

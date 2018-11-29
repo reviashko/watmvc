@@ -75,16 +75,18 @@
         });
     }
 
-    basket.Open = function (menu_id) {
+    basket.Open = function () {
+
+        alert('refresh');
 
         $.ajax({
             type: 'POST',
-            data: { menu_id: menu_id },
+            data: { },
             url: '/basket/Get',
             success: function (res) {
                 var template = $.templates("#basketTemplate");
                 var htmlOutput = template.render(res.bit);
-                $("#content").html(htmlOutput);
+                $("#BasketItems").html(htmlOutput);
                 InitLazyLoad();
             },
             error: function (res) {
@@ -98,7 +100,7 @@
         $.ajax({
             url: '/basket/Add',
             type: 'POST',
-            data: { goods_id: articul, cnt: qnt },
+            data: { articul: articul, cnt: qnt },
             success: function (result) {
                 alert(result.name);
             },
@@ -108,17 +110,18 @@
         });
     }
 
-    basket.RemoveFromBasket = function (basket_id) {
+    basket.RemoveFromBasket = function (articul) {
 
         $.ajax({
             url: '/basket/Remove',
             type: 'POST',
-            data: { basket_id: basket_id },
+            data: { articul: articul },
             success: function (result) {
-                alert(result.name);
+                return true;
             },
             error: function () {
                 alert("error");
+                return false;
             }
         });
     }
@@ -148,8 +151,11 @@
         $(".rem_btn").click(function () {
             basket.RemoveFromBasket($(this).attr("rel"));
             basket.Open();
+
             return false;
         });
+
+        //hide order btn if goods count equal zero
 
         $(".order_btn").click(function () {
 
