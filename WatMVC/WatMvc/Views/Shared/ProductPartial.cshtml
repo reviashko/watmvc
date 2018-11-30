@@ -5,20 +5,8 @@
 
 <div>
     <div class="fleft">
-        <img src="http://img.watshop.ru/small/@(Model.Product.HasImg ? Model.Product.Link_id.ToString() : "0").jpg" alt="@Model.Product.Name" />
         <img alt="@Model.Product.Name" src="http://img1.wbstatic.net/c246x328/new/@Model.Product.ImgSubFolder/@Model.Product.Articul-1.jpg" />
 
-        @if (Model.Product.Pdf > 0)
-        {
-            <a href="http://img.watshop.ru/pdf/@(Model.Product.Articul).pdf" target="_blank" title="Дополнительное описание @Model.Product.Articul">
-                <img src="/img/pdf.jpg" alt="Дополнительное описание @Model.Product.Articul" />
-            </a>
-        }
-
-        @if (Model.Product.Sound > 0)
-        {
-            <div>test sound test</div>
-        }        
 
         <div><input id="add_btn" rel="@Model.Product.Articul" type="button" value="В КОРЗИНУ" /></div>
         

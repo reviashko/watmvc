@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IPagerService.cs" />
     <Compile Include="Interfaces\IPaymentService.cs" />
     <Compile Include="Interfaces\IBasketService.cs" />
     <Compile Include="Interfaces\ICatalogService.cs" />
     <Compile Include="Interfaces\IMenuService.cs" />
+    <Compile Include="Services\PagerService.cs" />
     <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\BasketService.cs" />
     <Compile Include="Services\CatalogService.cs" />

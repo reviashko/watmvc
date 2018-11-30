@@ -14,12 +14,14 @@ namespace Application
     {
         ICatalogRepository _catalogRepository;
         ProductCacheRepository _cache;
+        int _goodsByMenuIdCount;
 
 
         public CatalogService(ICatalogRepository catalogRepository)
         {
             _catalogRepository = catalogRepository;
             _cache = ProductCacheRepository.GetInstance();
+            _goodsByMenuIdCount = 0;
         }
 
         private byte[] GetBytes(List<int> items)
@@ -91,10 +93,17 @@ namespace Application
             }
         }
 
+        public int GetGoodsByMenuIdCount()
+        {
+            return _goodsByMenuIdCount;
+        }
+
 
         public List<Product> GetGoodsByMenuId(int menu_id, int page_num, int page_size)
         {
             List <int> catalog_items = GetArticulsByMenuId(menu_id);
+
+            _goodsByMenuIdCount = catalog_items.Count();
 
             return GetProductsByArticuls(catalog_items, page_num, page_size);
         }

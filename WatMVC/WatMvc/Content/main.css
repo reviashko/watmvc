@@ -100,3 +100,22 @@ a{
     float:left;
     padding-left:25px;
 }
+
+div#pager
+{
+    border:1px solid red;
+    padding:5px;
+    height:25px;
+}
+
+div#pager div
+{
+    float:left;
+    border:1px solid green;
+    margin:5px;
+}
+
+div#pager div.current_page
+{
+    background-color:red;
+}

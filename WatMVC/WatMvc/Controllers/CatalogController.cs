@@ -14,11 +14,13 @@ namespace WatMvc.Views
     {
         ICatalogService _catalogService;
         IMenuService _menuService;
+        IPagerService _pagerService;
 
-        public CatalogController(ICatalogService catalogService, IMenuService menuService)
+        public CatalogController(ICatalogService catalogService, IMenuService menuService, IPagerService pagerService)
         {
             _catalogService = catalogService;
             _menuService = menuService;
+            _pagerService = pagerService;
         }
         
         [ChildActionOnly]
@@ -40,9 +42,11 @@ namespace WatMvc.Views
         {
             var catalogMenu = _menuService.GetCatalogMenuItems(0);
 
-            var catalogGoods = _catalogService.GetGoodsByMenuId(0, 1, 9);
+            var catalogGoods = _catalogService.GetGoodsByMenuId(0, 1, _pagerService.GetPageSize());
 
-            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
+            var pagerData = _pagerService.GetPagerItems(_catalogService.GetGoodsByMenuIdCount(), _pagerService.GetPageSize(), 1, _pagerService.GetPagerSize());
+
+            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu, Pages = pagerData });
         }
 
         [Route("catalog/{brand_name}/{articul}/")]
@@ -70,14 +74,17 @@ namespace WatMvc.Views
 
             var catalogMenu = _menuService.GetCatalogMenuItems(catalogMenuItem.Menu_id);
 
-            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id, 1, 9);
+            var catalogGoods = _catalogService.GetGoodsByMenuId(catalogMenuItem.Menu_id, 1, _pagerService.GetPageSize());
             if (catalogGoods.Count < 1)
             {
                 return HttpNotFound("Ресурс не найден");
             }
 
-            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu });
+            var pagerData = _pagerService.GetPagerItems(_catalogService.GetGoodsByMenuIdCount(), _pagerService.GetPageSize(), 1, _pagerService.GetPagerSize());
+
+            return View("Catalog", new CatalogViewModels() { Products = catalogGoods, MenuItems = catalogMenu, Pages = pagerData });
         }
+
 
     }
 }

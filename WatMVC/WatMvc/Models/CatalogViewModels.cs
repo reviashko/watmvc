@@ -7,5 +7,7 @@ namespace WatMvc.Models
     {
         public List<CatalogMenuItem> MenuItems { get; set; }
         public List<Product> Products { get; set; }
+        public List<PagerItem> Pages { get; set; }
+        public int Menu_id { get; set; }
     }
 }

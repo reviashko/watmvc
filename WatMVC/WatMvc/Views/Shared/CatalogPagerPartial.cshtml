@@ -1,0 +1,9 @@
+﻿@model WatMvc.Models.CatalogViewModels
+
+<ul>
+    @foreach (var item in Model.Pages)
+    {
+        <li>@item.Page_name</li>
+    }
+
+</ul>

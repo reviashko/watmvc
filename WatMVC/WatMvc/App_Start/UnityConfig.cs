@@ -40,6 +40,7 @@ namespace WatMvc.App_Start
             // TODO: Register your types here
             container.RegisterType<ICatalogRepository, CatalogRepository>();
             container.RegisterType<ICatalogService, CatalogService>();
+            container.RegisterType<IPagerService, PagerService>();
 
             container.RegisterType<IBasketService, BasketService>();
             container.RegisterType<IBasketRepository, BasketRepository>();
@@ -49,6 +50,7 @@ namespace WatMvc.App_Start
 
             container.RegisterType<IPaymentService, PaymentService>();
             container.RegisterType<IPaymentRepository, PaymentRepository>();
+
         }
     }
 }

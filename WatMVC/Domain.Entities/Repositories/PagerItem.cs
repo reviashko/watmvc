@@ -12,12 +12,15 @@ namespace Domain.Entities
     {
         public int Page_id { get; set; }
 
+        public bool Is_current { get; set; }
+
         public string Page_name { get; set; }
 
         public PagerItem()
         {
             Page_id = 0;
             Page_name = "";
+            Is_current = false;
         }
 
     }

@@ -8,8 +8,14 @@
 @if (Model.Products.Count > 0)
 {
     @Html.Partial("BasketPartial", Model)
-    @Html.Partial("PaymentTypesPartial", Model)
 
+    <div id="basketService">
+
+        <input type="button" class="order_btn" value="ОФормить заказ" rel="1" />
+
+        @Html.Partial("PaymentTypesPartial", Model)
+
+    </div>
 
     @section scripts{
         <script type="text/javascript">
@@ -51,6 +57,5 @@
         </script>
     }
 }
-else {
-    <div>Нет товаров</div>
-}
+
+<div id="basketEmpty">Нет товаров</div>

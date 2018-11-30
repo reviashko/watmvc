@@ -24,32 +24,54 @@
             $("#content IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); });
            
             $(".lmenu A").click(function () {
-                catalog.Open($(this).attr("id"));
+                catalog.Open(1, $(this).attr("id"));
                 return false;
             });
 
         });
     }
 
-    catalog.Open = function (menu_id) {
+    catalog.Open = function (page_id, menu_id) {
 
         $.ajax({
             type: 'POST',
-            data: { menu_id: menu_id },
+            data: { menu_id: menu_id, page_id: page_id },
             url: '/ajax/GetCatalogDataById',
             success: function (res) {
                 var items = res.itms;
                 var menu = res.mnus;
-                var template = $.templates("#catalogTemplate");
-                var htmlOutput = template.render(items);
-                $("#content").html(htmlOutput);
+                var pager_items = res.pager;
+
+                var catalog_template = $.templates("#catalogTemplate");
+                var catalog_htmlOutput = catalog_template.render(items);
+
+                $("#content").html(catalog_htmlOutput);
                 InitLazyLoad();
                 $("#content IMG.lazy").click(function () { window.location.href = $(this).attr("rel"); });
+
+                var pager_div = $('<div class="cl"></div><div id="pager"></div>');
+                $("#content").append(pager_div);
+
+                var pager_template = $.templates("#pagerTemplate");
+                var pager_htmlOutput = pager_template.render(pager_items);
+
+                $("#pager").html(pager_htmlOutput);
+
+                $("#pager A").click(function () {
+                    PagerClick(menu_id, $(this).attr("rel"));
+                });
+
             },
             error: function (res) {
                 $("#content").text("error on load ((");
             }
         });
+    }
+
+    function PagerClick(menu_id, pager_id)
+    {
+        catalog.Open(pager_id, menu_id);
+        return false;
     }
 
     function LoadTest() {
@@ -87,7 +109,7 @@
                 var template = $.templates("#basketTemplate");
                 var htmlOutput = template.render(res.bit);
                 $("#BasketItems").html(htmlOutput);
-                InitLazyLoad();
+                InitLazyLoad();                
             },
             error: function (res) {
                 $("#content").text("error on load");
@@ -155,7 +177,14 @@
             return false;
         });
 
-        //hide order btn if goods count equal zero
+        if ($(".BItem").length > 0)
+        {
+            $("#basketService").show();
+            $("#basketEmpty").hide();
+        } else {
+            $("#basketService").hide();
+            $("#basketEmpty").show();
+        }
 
         $(".order_btn").click(function () {
 

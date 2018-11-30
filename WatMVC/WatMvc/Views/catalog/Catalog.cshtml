@@ -6,6 +6,8 @@
 
 @Html.Partial("CatalogPartial", Model)
 
+@Html.Partial("CatalogPagerPartial", Model)
+
 @section scripts{
     <script type="text/javascript">
         catalog.OnDocumentReady();
@@ -37,4 +39,8 @@
             </table>
         </div>
     </script>
+
+<script id="pagerTemplate" type="text/x-jsrender">
+        <div{{if Is_current}} class="current_page"{{/if}}><a rel="{{:Page_id}}">{{:Page_name}}</a></div>
+</script>
 }
